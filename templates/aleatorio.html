@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black November - Rotação Automática</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+</head>
+<body>
+    <script>
+        // Detecta qual tema usar baseado em parâmetro URL ou padrão para Natal
+        const urlParams = new URLSearchParams(window.location.search);
+        const theme = urlParams.get('theme') || 'natal'; // Padrão: natal
+        
+        // Lista de rotas dos painéis baseado no tema
+        const panels = theme === 'black-november' 
+            ? ['/black-november', '/black-november/metas', '/black-november/hall-da-fama', '/black-november/destaques']
+            : ['/natal', '/natal/metas', '/natal/hall-da-fama', '/natal/destaques'];
+        
+        // Salva o índice atual no localStorage para sincronizar TVs (por tema)
+        const STORAGE_KEY = `panel_index_${theme}`;
+        
+        // Ao entrar, define o painel inicial se não existir
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            localStorage.setItem(STORAGE_KEY, '0');
+        }
+        
+        // Pega o índice atual e redireciona imediatamente
+        let idx = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+        window.location.href = panels[idx] + '?aleatorio=1';
+    </script>
+</body>
+</html>

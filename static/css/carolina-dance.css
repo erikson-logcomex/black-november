@@ -1,0 +1,65 @@
+/* Carolina - Dança de Natal - Tamanhos e posições fixos */
+.carolina-dance {
+    position: fixed;
+    bottom: 0;
+    left: 20px; /* Posição fixa em pixels */
+    width: 600px; /* Tamanho fixo em pixels */
+    height: auto; /* Mantém proporção */
+    max-height: 900px; /* Altura máxima fixa */
+    z-index: 100;
+    pointer-events: none;
+    object-fit: contain;
+    object-position: bottom left;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+#carolinaImage {
+    display: block;
+}
+
+#carolinaVideo1,
+#carolinaVideo2,
+#carolinaVideo3 {
+    display: none;
+}
+
+#carolinaVideoCanvas {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 20px; /* Posição fixa em pixels */
+    width: 600px; /* Tamanho fixo em pixels */
+    height: auto; /* Mantém proporção */
+    max-height: 900px; /* Altura máxima fixa */
+    z-index: 100;
+    pointer-events: none;
+    object-fit: contain;
+    object-position: bottom left;
+}
+
+/* Ajustes para telas menores - mantém proporção mas reduz tamanho */
+@media screen and (max-width: 1200px) {
+    .carolina-dance,
+    #carolinaVideoCanvas {
+        width: 500px;
+        max-height: 750px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carolina-dance,
+    #carolinaVideoCanvas {
+        width: 400px;
+        max-height: 600px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .carolina-dance,
+    #carolinaVideoCanvas {
+        width: 300px;
+        max-height: 450px;
+    }
+}
+

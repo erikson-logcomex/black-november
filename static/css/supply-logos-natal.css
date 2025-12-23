@@ -1,0 +1,295 @@
+/**
+ * CSS para página de Logos Supply - Natal
+ */
+
+/* Título Principal */
+.supply-logos-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.4),
+        3px 3px 8px rgba(0,0,0,0.7);
+    white-space: nowrap;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+    text-align: center;
+    width: fit-content;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* Container do Gauge */
+.gauge-container {
+    position: fixed;
+    top: 180px; /* Posição fixa em pixels para evitar desalinhamento com zoom */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container dos Cards de Métricas */
+.stats-container {
+    position: fixed;
+    top: 690px; /* Posição fixa em pixels para evitar desalinhamento com zoom */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Wrapper do Gauge Circular */
+.gauge-wrapper {
+    position: relative;
+    width: 510px; /* Aumentado de 450px para 510px (450px + 60px de espaço para o brilho) */
+    height: 510px; /* Aumentado de 450px para 510px (450px + 60px de espaço para o brilho) */
+    overflow: visible; /* Permite que o brilho seja visível fora do container */
+}
+
+.gauge-circle {
+    position: relative;
+    width: 450px; /* Tamanho fixo do gauge */
+    height: 450px; /* Tamanho fixo do gauge */
+    margin: 30px auto; /* Centraliza e adiciona espaço para o brilho */
+    overflow: visible; /* Permite que o brilho seja visível */
+}
+
+.gauge-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    overflow: visible; /* Permite que o brilho seja visível */
+}
+
+.gauge-background {
+    stroke: rgba(29, 4, 61, 0.3); /* Roxo Logcomex com transparência */
+}
+
+.gauge-progress {
+    stroke: #FE8F1C; /* Laranja Logcomex */
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-out;
+    filter: drop-shadow(0 0 8px rgba(254, 143, 28, 0.6));
+}
+
+.gauge-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.gauge-value {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #FE8F1C; /* Laranja Logcomex */
+    text-shadow: 0 0 20px rgba(254, 143, 28, 0.6);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.gauge-label {
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.gauge-target {
+    font-size: 2.7rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+}
+
+.gauge-percentage {
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: #FE8F1C; /* Laranja Logcomex */
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(254, 143, 28, 0.5);
+}
+
+.gauge-remaining {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Estatísticas */
+.gauge-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat-item {
+    background: rgba(254, 143, 28, 0.2); /* Laranja Logcomex #FE8F1C - tema natal */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px 20px;
+    text-align: center;
+    min-width: 150px;
+    border: 2px solid rgba(254, 143, 28, 0.5);
+    box-shadow: 0 5px 15px rgba(254, 143, 28, 0.3);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff; /* Branco - igual aos rótulos do gráfico */
+}
+
+.stat-value.stat-new {
+    color: #fff; /* Branco - igual aos rótulos do gráfico */
+}
+
+.stat-value.stat-expansion {
+    color: #fff; /* Branco - igual aos rótulos do gráfico */
+}
+
+.stat-value.stat-total {
+    color: #fff; /* Branco - igual aos rótulos do gráfico */
+}
+
+/* Container do Gráfico */
+.chart-container {
+    position: fixed;
+    top: 150px; /* Posição fixa em pixels para evitar desalinhamento com zoom */
+    left: 50px;
+    width: 400px; /* Largura fixa em pixels */
+    height: 650px;
+    background: rgba(254, 143, 28, 0.2); /* Laranja Logcomex #FE8F1C - tema natal */
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid rgba(254, 143, 28, 0.5); /* Borda laranja - tema natal */
+    box-shadow: 0 10px 30px rgba(254, 143, 28, 0.3);
+    z-index: 10;
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse */
+    box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #FE8F1C; /* Laranja Logcomex */
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(254, 143, 28, 0.5);
+    flex-shrink: 0; /* Não encolhe */
+}
+
+#logosChart {
+    flex: 1;
+    max-height: 100%;
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Loading */
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    text-align: center;
+    color: #fff;
+}
+
+.spinner {
+    border: 4px solid rgba(102, 19, 208, 0.3);
+    border-top: 4px solid #FE8F1C; /* Laranja Logcomex */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .supply-logos-title {
+        font-size: 2.5rem;
+        top: 60px;
+    }
+    
+    .gauge-wrapper {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .gauge-value {
+        font-size: 2.5rem;
+    }
+    
+    .gauge-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .stat-item {
+        min-width: 100%;
+    }
+    
+    .chart-container {
+        position: fixed;
+        top: auto;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        height: 350px;
+        padding: 20px;
+    }
+    
+    .chart-title {
+        font-size: 1.2rem;
+    }
+}
+

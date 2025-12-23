@@ -1,0 +1,296 @@
+/**
+ * Estilos para o ranking de Top 5 EVs e SDRs com SLIDER
+ * Posicionado no espaço livre à esquerda entre a faca na caveira e o funil
+ */
+
+.top-evs-container {
+    position: fixed;
+    left: 60px;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 260px;
+    max-height: calc(100vh - 100px);
+    z-index: 50;
+    background: linear-gradient(135deg, rgba(102, 19, 208, 0.15) 0%, rgba(0, 0, 0, 0.3) 100%);
+    border: 2px solid rgba(102, 19, 208, 0.5);
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    overflow: hidden; /* Esconde completamente o conteúdo fora do container */
+    overflow-x: hidden; /* Garante que nada aparece na horizontal */
+}
+
+/* Wrapper dos slides - flexbox horizontal */
+.ranking-slides-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 15px; /* Espaço entre os slides para garantir separação */
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Cada slide ocupa 100% da largura do container */
+.ranking-slide {
+    min-width: 100%;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* Bullets (indicadores) */
+.ranking-bullets {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.ranking-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ranking-bullet.active {
+    background: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    transform: scale(1.3);
+}
+
+.top-evs-header {
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.top-evs-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin: 0 0 5px 0;
+}
+
+.top-evs-subtitle {
+    font-size: 0.75rem;
+    color: #FFA500;
+    margin: 0;
+}
+
+.top-evs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-ev-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 8px;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 1px solid transparent;
+}
+
+.top-ev-item:hover {
+    background: rgba(102, 19, 208, 0.2);
+    border-color: rgba(255, 215, 0, 0.3);
+    transform: scale(1.02);
+}
+
+/* Animação de entrada escalonada */
+.top-ev-item {
+    animation: slideInLeft 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.top-ev-item:nth-child(1) { animation-delay: 0.1s; }
+.top-ev-item:nth-child(2) { animation-delay: 0.2s; }
+.top-ev-item:nth-child(3) { animation-delay: 0.3s; }
+.top-ev-item:nth-child(4) { animation-delay: 0.4s; }
+.top-ev-item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Posição e medals - agora sobreposta na foto */
+.ev-position {
+    position: absolute;
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.2rem;
+    z-index: 10;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
+    line-height: 1;
+}
+
+/* Números 4 e 5 menores */
+.top-ev-item:nth-child(4) .ev-position,
+.top-ev-item:nth-child(5) .ev-position {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* Tamanho das fotos baseado na posição */
+.ev-photo-wrapper {
+    position: relative;
+    border-radius: 50%;
+    overflow: visible;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.top-ev-item:nth-child(1) .ev-photo-wrapper {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.top-ev-item:nth-child(2) .ev-photo-wrapper {
+    width: 54px;
+    height: 54px;
+    border: 3px solid #C0C0C0;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
+}
+
+.top-ev-item:nth-child(3) .ev-photo-wrapper {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #CD7F32;
+    box-shadow: 0 0 15px rgba(205, 127, 50, 0.6);
+}
+
+.top-ev-item:nth-child(4) .ev-photo-wrapper,
+.top-ev-item:nth-child(5) .ev-photo-wrapper {
+    width: 46px;
+    height: 46px;
+    border: 2px solid rgba(102, 19, 208, 0.5);
+}
+
+.ev-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.ev-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6613D0 0%, #FF6B00 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 50%;
+}
+
+/* Info do EV */
+.ev-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ev-name {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+}
+
+.ev-revenue {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #00FF88;
+    margin: 0;
+}
+
+.ev-deals {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 2px 0 0 0;
+}
+
+/* Estado vazio */
+.top-evs-empty {
+    text-align: center;
+    padding: 30px 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.top-evs-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.top-evs-empty-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Animação de mudança de posição */
+.ev-position-change {
+    animation: positionBounce 0.6s ease-out;
+}
+
+@keyframes positionBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+/* Responsivo para telas menores */
+@media (max-width: 1400px) {
+    .top-evs-container {
+        width: 230px;
+        left: 40px;
+        padding: 12px;
+    }
+    
+    .top-evs-title {
+        font-size: 1.1rem;
+    }
+    
+    .ev-name {
+        font-size: 0.8rem;
+        max-width: 110px;
+    }
+    
+    .ev-revenue {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .top-evs-container {
+        display: none;
+    }
+}

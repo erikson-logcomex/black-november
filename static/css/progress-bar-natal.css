@@ -1,0 +1,244 @@
+/* Barra de Progresso Temática de Natal */
+.progress-container {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+    width: 80%;
+    max-width: 800px;
+    padding: 40px;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.9) 0%,
+        rgba(75, 0, 130, 0.9) 50%,
+        rgba(139, 0, 0, 0.9) 100%);
+    border-radius: 25px;
+    border: 4px solid #FFD700;
+    box-shadow: 
+        0 0 50px rgba(255, 215, 0, 0.8),
+        0 0 100px rgba(255, 215, 0, 0.4),
+        inset 0 0 30px rgba(255, 215, 0, 0.3),
+        0 0 0 2px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    overflow: visible;
+}
+
+/* Decorações de Natal ao redor do container */
+.progress-container::before {
+    content: '🎁';
+    position: absolute;
+    top: -50px;
+    left: 20px;
+    font-size: 4rem; /* Dobrado de 2rem para 4rem */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    animation: float 3s ease-in-out infinite;
+}
+
+.progress-container::after {
+    content: '🎅🏻';
+    position: absolute;
+    top: -50px;
+    right: 20px;
+    font-size: 4rem; /* Dobrado de 2rem para 4rem */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    animation: float 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+.progress-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #FFD700;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'MillionDesign', sans-serif;
+}
+
+.progress-percentage {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    overflow: hidden;
+    border: 3px solid #FFD700;
+    box-shadow: 
+        inset 0 3px 15px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.5),
+        0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    /* Padrão de pirulito (candy cane) - listras vermelhas e brancas em espiral */
+    background: repeating-linear-gradient(
+        45deg,
+        #DC143C 0px,
+        #DC143C 25px,
+        #FFFFFF 25px,
+        #FFFFFF 50px
+    );
+    border-radius: 30px;
+    transition: width 1s ease-out;
+    box-shadow: 
+        0 0 30px rgba(220, 20, 60, 0.8),
+        inset 0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 60px rgba(220, 20, 60, 0.5);
+    overflow: hidden;
+    /* Adiciona um brilho sutil sobre o padrão */
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            #DC143C 0px,
+            #DC143C 25px,
+            #FFFFFF 25px,
+            #FFFFFF 50px
+        ),
+        linear-gradient(90deg, 
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.1) 100%);
+}
+
+/* Estados da barra - mantém padrão candy cane mas com brilho diferente */
+.progress-bar-fill.low {
+    box-shadow: 
+        0 0 25px rgba(220, 20, 60, 0.6),
+        inset 0 0 15px rgba(255, 255, 255, 0.2),
+        0 0 40px rgba(220, 20, 60, 0.4);
+}
+
+.progress-bar-fill.medium {
+    box-shadow: 
+        0 0 35px rgba(220, 20, 60, 0.8),
+        inset 0 0 25px rgba(255, 255, 255, 0.3),
+        0 0 50px rgba(220, 20, 60, 0.6);
+}
+
+.progress-bar-fill.high {
+    box-shadow: 
+        0 0 40px rgba(220, 20, 60, 1),
+        inset 0 0 30px rgba(255, 255, 255, 0.4),
+        0 0 70px rgba(220, 20, 60, 0.8);
+}
+
+.progress-bar-fill.complete {
+    /* Quando completa, adiciona brilho dourado sobre o padrão candy cane */
+    background: repeating-linear-gradient(
+        45deg,
+        #DC143C 0px,
+        #DC143C 25px,
+        #FFFFFF 25px,
+        #FFFFFF 50px
+    ),
+    linear-gradient(90deg, 
+        rgba(255, 215, 0, 0.3) 0%,
+        rgba(255, 215, 0, 0.5) 50%,
+        rgba(255, 215, 0, 0.3) 100%);
+    animation: completePulse 1.5s infinite;
+    box-shadow: 
+        0 0 50px rgba(220, 20, 60, 1),
+        inset 0 0 40px rgba(255, 255, 255, 0.5),
+        0 0 100px rgba(255, 215, 0, 0.8),
+        0 0 150px rgba(220, 20, 60, 0.6);
+}
+
+
+/* Animações */
+@keyframes candyCaneShine {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 50px 0, 100px 0;
+    }
+}
+
+@keyframes completePulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 30px rgba(0, 255, 0, 0.8),
+            inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 
+            0 0 50px rgba(0, 255, 0, 1),
+            inset 0 0 40px rgba(255, 255, 255, 0.7);
+    }
+}
+
+
+@keyframes lightsTwinkle {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Ajustes para telas menores */
+@media screen and (max-width: 768px) {
+    .progress-container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .progress-label {
+        font-size: 1.4rem;
+    }
+    
+    .progress-percentage {
+        font-size: 1.2rem;
+    }
+    
+    .progress-bar {
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .progress-container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .progress-label {
+        font-size: 1.2rem;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .progress-bar {
+        height: 35px;
+    }
+}
+

@@ -1,0 +1,278 @@
+/* Reset e Base (MANTÉM PADRÃO DO FUNNEL.HTML) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+}
+
+/* Imagens de Layout Padrão (IDÊNTICO ao funnel.html e metas.html) */
+.confidencial-logo {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    height: auto;
+    z-index: 101;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.skull-sword-image {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 20px;
+    max-width: 20px;
+    height: auto;
+    z-index: 100;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.orange-band-image {
+    position: fixed;
+    bottom: -25px;
+    left: -20px;
+    max-width: 550px;
+    height: auto;
+    z-index: 100;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.purple-band-image {
+    position: fixed;
+    bottom: -25px;
+    right: -20px;
+    max-width: 550px;
+    height: auto;
+    z-index: 100;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Container Principal */
+.container {
+    max-width: 600px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 40px;
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card de Login */
+.login-card {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(254, 143, 28, 0.5);
+    border-radius: 30px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(254, 143, 28, 0.3);
+    animation: fadeInScale 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Efeito de brilho de fundo */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(254, 143, 28, 0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Logo Black November no Card */
+.login-logo {
+    width: 280px;
+    margin: 0 auto 25px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-logo img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(254, 143, 28, 0.4));
+}
+
+/* Título */
+.login-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FE8F1C;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(254, 143, 28, 0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.login-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+}
+
+/* Informação de IP */
+.ip-info {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ip-label {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ip-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #FE8F1C;
+    font-family: 'Courier New', monospace;
+}
+
+/* Botão de Login Google */
+.google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    color: #333333;
+    padding: 18px 35px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.google-login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transition: left 0.5s ease;
+}
+
+.google-login-btn:hover::before {
+    left: 100%;
+}
+
+.google-login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(66, 133, 244, 0.3);
+}
+
+.google-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Footer */
+.login-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.login-footer p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 5px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .login-card {
+        padding: 35px 25px;
+    }
+
+    .login-title {
+        font-size: 2rem;
+    }
+
+    .login-subtitle {
+        font-size: 1rem;
+    }
+
+    .google-login-btn {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+    }
+
+    .login-logo {
+        width: 220px;
+    }
+
+    .skull-sword-image {
+        width: 15px;
+    }
+
+    .orange-band-image,
+    .purple-band-image {
+        display: none;
+    }
+}

@@ -1,0 +1,85 @@
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Certificados SSL (não commitar)
+certs/*.pem
+!certs/.gitkeep
+
+# Cookies e sessões do Looker
+data/looker_cookies/*.pkl
+data/looker_cookies/*.json
+looker_cookies.pkl
+looker_storage_state.json
+
+# Arquivos de teste e debug
+test_*.png
+*_debug.png
+*_test_result.json
+query_*.json
+looker_test_result.json
+looker_data.json
+looker_debug.png
+looker_login_page.png
+
+# Arquivos temporários
+*.bak
+*.tmp
+*.temp
+app_backup*.py
+app_old.py
+app_refactored.py
+
+# Arquivos de imagem de teste
+test_celebration_*.png
+arr_looker_debug.png
+arr_login_error.png
+
+# Arquivos de mídia grandes (se necessário)
+# static/media/*.mp4
+# static/media/*.mp3
+

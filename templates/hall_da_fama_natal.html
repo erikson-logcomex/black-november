@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Hall da Fama - Natal Logcomex</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Natal Logcomex">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <link rel="stylesheet" href="/static/css/hall_da_fama.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration_themes.css">
+    <link rel="stylesheet" href="/static/css/home-button.css">
+</head>
+<body>
+    <a href="/" class="home-button" title="Voltar para página inicial">🏠</a>
+    <img src="/static/img/confidencial.png" alt="Confidencial" class="confidencial-logo">
+    
+    
+    <!-- Componente Universal de Celebração -->
+    {% include 'includes/celebration_component.html' %}
+    
+    <!-- Container Principal -->
+    <div class="container hall-container">
+        <img src="/static/img/blck_november.png" alt="Black November Logcomex" class="black-november-logo">
+        <img src="/static/img/%23facanacaveira.png" alt="Faca na Caveira" class="skull-sword-image">
+        <img src="/static/img/faixa_laranja.png" alt="Faixa Laranja" class="orange-band-image">
+        <img src="/static/img/feixa_roxa.png" alt="Faixa Roxa" class="purple-band-image">
+        
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Carregando Hall da Fama...</div>
+        </div>
+        
+        <!-- Slides do Hall da Fama -->
+        <div class="hall-slides" id="hallSlides" style="display: none;">
+            
+            <!-- Slide 1: EVs -->
+            <div class="hall-slide active" id="slideEvs">
+                <div class="hall-header">
+                    <h1 class="hall-title">🏆 HALL DA FAMA DIÁRIO - EVs</h1>
+                    <p class="hall-subtitle">Executivos de Vendas - Top 5 do Dia</p>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="mvp-card" id="mvpEvs">
+                        <div class="mvp-badge">DESTAQUE DO DIA</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpEvsPhoto" src="/static/img/team/placeholder.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpEvsName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvsDeals">0</span>
+                                <span class="mvp-stat-label">Deals</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvsRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                        <div class="mvp-badges" id="mvpEvsBadges">
+                            <!-- Badges will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="top-list">
+                        <h3 class="list-title">🥇 TOP 5 RANKING</h3>
+                        <ul id="topEvsList" class="ranking-list">
+                            <!-- Will be filled dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2: SDRs NEW -->
+            <div class="hall-slide" id="slideSdrsNew">
+                <div class="hall-header">
+                    <h1 class="hall-title">📞 HALL DA FAMA DIÁRIO - SDRs NEW</h1>
+                    <p class="hall-subtitle">Sales Development Representatives - Pipeline NEW</p>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="mvp-card" id="mvpSdrsNew">
+                        <div class="mvp-badge">DESTAQUE DO DIA - SDR (NEW)</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpSdrsNewPhoto" src="/static/img/team/placeholder.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpSdrsNewName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpSdrsNewScheduled">0</span>
+                                <span class="mvp-stat-label">Agendamentos</span>
+                            </div>
+                        </div>
+                        <div class="mvp-badges" id="mvpSdrsNewBadges">
+                            <!-- Badges will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="top-list">
+                        <h3 class="list-title">🥇 TOP 5 RANKING</h3>
+                        <ul id="topSdrsNewList" class="ranking-list">
+                            <!-- Will be filled dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3: SDRs Expansão -->
+            <div class="hall-slide" id="slideSdrsExpansao">
+                <div class="hall-header">
+                    <h1 class="hall-title">📞 HALL DA FAMA DIÁRIO - SDRs Expansão</h1>
+                    <p class="hall-subtitle">Sales Development Representatives - Pipeline Expansão</p>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="mvp-card" id="mvpSdrsExpansao">
+                        <div class="mvp-badge">DESTAQUE DO DIA</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpSdrsExpansaoPhoto" src="/static/img/team/placeholder.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpSdrsExpansaoName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpSdrsExpansaoScheduled">0</span>
+                                <span class="mvp-stat-label">Agendamentos</span>
+                            </div>
+                        </div>
+                        <div class="mvp-badges" id="mvpSdrsExpansaoBadges">
+                            <!-- Badges will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="top-list">
+                        <h3 class="list-title">🥇 TOP 5 RANKING</h3>
+                        <ul id="topSdrsExpansaoList" class="ranking-list">
+                            <!-- Will be filled dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 4: LDRs -->
+            <div class="hall-slide" id="slideLdrs">
+                <div class="hall-header">
+                    <h1 class="hall-title">🎓 HALL DA FAMA DIÁRIO - LDRs</h1>
+                    <p class="hall-subtitle">Lead Development Representatives - Top 5 do Dia</p>
+                </div>
+                
+                <div class="profile-section">
+                    <div class="mvp-card" id="mvpLdrs">
+                        <div class="mvp-badge">DESTAQUE DO DIA</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpLdrsPhoto" src="/static/img/team/placeholder.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpLdrsName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrsDeals">0</span>
+                                <span class="mvp-stat-label">Deals Ganhos</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrsRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                        <div class="mvp-badges" id="mvpLdrsBadges">
+                            <!-- Badges will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="top-list">
+                        <h3 class="list-title">🥇 TOP 5 RANKING</h3>
+                        <ul id="topLdrsList" class="ranking-list">
+                            <!-- Will be filled dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Indicadores de Navegação -->
+        <div class="slide-indicators" id="slideIndicators" style="display: none;">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+        </div>
+        
+        <!-- Legenda de Badges - Card Fixo -->
+        <div class="badges-legend-card">
+            <h3 class="legend-card-title">📖 Legenda</h3>
+            <div class="legend-scroll-container">
+                <div class="legend-grid">
+                    <!-- PRIMEIRO BLOCO -->
+                    
+                    <!-- SEÇÃO: DEALS GANHOS (EVs/LDRs) -->
+                    <div class="legend-section-title">📊 DEALS GANHOS (EVs/LDRs)</div>
+                    
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/precision_sniper.png" alt="Precision Sniper" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Precision Sniper</strong>
+                            <small>3+ deals</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/full_pressure.png" alt="Full Pressure" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Full Pressure</strong>
+                            <small>7+ deals</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/overload_closer.png" alt="Overload Closer" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Overload Closer</strong>
+                            <small>10+ deals</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/madrugador.png" alt="Madrugador" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Madrugador</strong>
+                            <small>Deals antes das 08h</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/coruja.png" alt="Coruja" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Coruja</strong>
+                            <small>Deals depois das 21h</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/relampago.png" alt="Relâmpago" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Relâmpago</strong>
+                            <small>&lt; 1h entre deals</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/velocista.png" alt="Velocista" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Velocista</strong>
+                            <small>&lt; 3h entre deals</small>
+                        </div>
+                    </div>
+                    
+                    <!-- SEÇÃO: AGENDAMENTOS (SDRs) -->
+                    <div class="legend-section-title">📅 AGENDAMENTOS (SDRs)</div>
+                    
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/precision_sniper.png" alt="Precision Sniper" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Precision Sniper</strong>
+                            <small>3+ agendamentos</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/master_scheduler.png" alt="Master Scheduler" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Master Scheduler</strong>
+                            <small>5+ agendamentos</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/full_pressure.png" alt="Full Pressure" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Full Pressure</strong>
+                            <small>7+ agendamentos</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/overload_closer.png" alt="Overload Closer" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Overload Closer</strong>
+                            <small>10+ agendamentos</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/madrugador.png" alt="Madrugador" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Madrugador</strong>
+                            <small>Agendamentos antes das 08h</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/coruja.png" alt="Coruja" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Coruja</strong>
+                            <small>Agendamentos depois das 21h</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/relampago.png" alt="Relâmpago" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Relâmpago</strong>
+                            <small>&lt; 1h entre agendamentos</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/velocista.png" alt="Velocista" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Velocista</strong>
+                            <small>&lt; 3h entre agendamentos</small>
+                        </div>
+                    </div>
+                    
+                    <!-- SEÇÃO: FATURAMENTO (EVs/LDRs) -->
+                    <div class="legend-section-title">💰 FATURAMENTO (EVs/LDRs)</div>
+                    
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/bronze_closer.png" alt="Bronze Closer" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Bronze Closer</strong>
+                            <small>R$ 2.5k+ no dia</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/silver_closer.png" alt="Silver Closer" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Silver Closer</strong>
+                            <small>R$ 5k+ no dia</small>
+                        </div>
+                    </div>
+                    <div class="legend-badge-item">
+                        <img src="/static/img/badges/gold_closer.png" alt="Gold Closer" class="badge-icon badge-icon-image">
+                        <div class="badge-info">
+                            <strong>Gold Closer</strong>
+                            <small>R$ 10k+ no dia</small>
+                        </div>
+                    </div>
+                
+                <!-- SEGUNDO BLOCO (DUPLICADO PARA LOOP INFINITO) -->
+                
+                <!-- SEÇÃO: DEALS GANHOS (EVs/LDRs) -->
+                <div class="legend-section-title">📊 DEALS GANHOS (EVs/LDRs)</div>
+                
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/precision_sniper.png" alt="Precision Sniper" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Precision Sniper</strong>
+                        <small>3+ deals</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/full_pressure.png" alt="Full Pressure" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Full Pressure</strong>
+                        <small>7+ deals</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/overload_closer.png" alt="Overload Closer" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Overload Closer</strong>
+                        <small>10+ deals</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/madrugador.png" alt="Madrugador" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Madrugador</strong>
+                        <small>Deals antes das 08h</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/coruja.png" alt="Coruja" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Coruja</strong>
+                        <small>Deals depois das 21h</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/relampago.png" alt="Relâmpago" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Relâmpago</strong>
+                        <small>&lt; 1h entre deals</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/velocista.png" alt="Velocista" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Velocista</strong>
+                        <small>&lt; 3h entre deals</small>
+                    </div>
+                </div>
+                
+                <!-- SEÇÃO: AGENDAMENTOS (SDRs) -->
+                <div class="legend-section-title">📅 AGENDAMENTOS (SDRs)</div>
+                
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/precision_sniper.png" alt="Precision Sniper" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Precision Sniper</strong>
+                        <small>3+ agendamentos</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/master_scheduler.png" alt="Master Scheduler" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Master Scheduler</strong>
+                        <small>5+ agendamentos</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/full_pressure.png" alt="Full Pressure" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Full Pressure</strong>
+                        <small>7+ agendamentos</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/overload_closer.png" alt="Overload Closer" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Overload Closer</strong>
+                        <small>10+ agendamentos</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/madrugador.png" alt="Madrugador" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Madrugador</strong>
+                        <small>Agendamentos antes das 08h</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/coruja.png" alt="Coruja" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Coruja</strong>
+                        <small>Agendamentos depois das 21h</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/relampago.png" alt="Relâmpago" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Relâmpago</strong>
+                        <small>&lt; 1h entre agendamentos</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/velocista.png" alt="Velocista" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Velocista</strong>
+                        <small>&lt; 3h entre agendamentos</small>
+                    </div>
+                </div>
+                
+                <!-- SEÇÃO: FATURAMENTO (EVs/LDRs) -->
+                <div class="legend-section-title">💰 FATURAMENTO (EVs/LDRs)</div>
+                
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/bronze_closer.png" alt="Bronze Closer" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Bronze Closer</strong>
+                        <small>R$ 2.5k+ no dia</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/silver_closer.png" alt="Silver Closer" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Silver Closer</strong>
+                        <small>R$ 5k+ no dia</small>
+                    </div>
+                </div>
+                <div class="legend-badge-item">
+                    <img src="/static/img/badges/gold_closer.png" alt="Gold Closer" class="badge-icon badge-icon-image">
+                    <div class="badge-info">
+                        <strong>Gold Closer</strong>
+                        <small>R$ 10k+ no dia</small>
+                    </div>
+                </div>
+                </div> <!-- fecha .legend-grid -->
+            </div> <!-- fecha .legend-scroll-container -->
+        </div> <!-- fecha .badges-legend-card -->
+    </div>
+
+    <script src="/static/javascript/hall_da_fama.js"></script>
+    <script src="/static/javascript/celebration_theme_manager.js"></script>
+    <script src="/static/javascript/deal_celebration.js"></script>
+    
+    <!-- Sistema de Rotação Automática -->
+    <script>
+        // Verifica se está no modo de rotação automática
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('aleatorio')) {
+            // Tenta desbloquear áudio automaticamente no modo aleatório
+            window.addEventListener('load', () => {
+                const audio = document.getElementById('cornetAudio');
+                if (audio) {
+                    audio.volume = 0.01; // Volume muito baixo
+                    const playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            audio.pause();
+                            audio.currentTime = 0;
+                            audio.volume = 1.0; // Restaura volume
+                            console.log('✅ Áudio desbloqueado automaticamente');
+                        }).catch(err => {
+                            console.log('⚠️ Áudio não desbloqueado automaticamente (normal)');
+                        });
+                    }
+                }
+            });
+            
+            // NOTA: O timer de navegação agora é iniciado pelo JavaScript (hall_da_fama.js)
+            // após os dados carregarem, garantindo que o tempo só comece a contar depois
+            // que os dados estiverem prontos.
+        }
+    </script>
+
+    <!-- Twemoji para emojis consistentes -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script>
+        // Aplica Twemoji assim que a página carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('🎨 Aplicando Twemoji...');
+            if (typeof twemoji !== 'undefined') {
+                twemoji.parse(document.body, {
+                    base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
+                });
+                console.log('✅ Twemoji aplicado com sucesso!');
+            } else {
+                console.error('❌ Twemoji não carregado!');
+            }
+        });
+    </script>
+</body>
+</html>

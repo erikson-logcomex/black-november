@@ -1,0 +1,240 @@
+{
+  "total_sdrs": 36,
+  "teams": {
+    "46315118": {
+      "total_members": 9,
+      "members": [
+        {
+          "id": "543933566",
+          "name": "Elisangela Bonfim de Oliveira",
+          "deal_count": 3
+        },
+        {
+          "id": "1236255023",
+          "name": "Ana Paula Rodrigues dos Santos",
+          "deal_count": 4
+        },
+        {
+          "id": "991913088",
+          "name": "Yasmim Nunes Barbosa",
+          "deal_count": 3
+        },
+        {
+          "id": "79224502",
+          "name": "Erica Carsoli",
+          "deal_count": 3
+        },
+        {
+          "id": "80071599",
+          "name": "Emanoel Muller",
+          "deal_count": 2
+        },
+        {
+          "id": "80769530",
+          "name": "Danuzi Engel",
+          "deal_count": 2
+        },
+        {
+          "id": "81501346",
+          "name": "Amandha Afonso Alves",
+          "deal_count": 2
+        },
+        {
+          "id": "81501348",
+          "name": "Thalita Fabri",
+          "deal_count": 2
+        },
+        {
+          "id": "109003522",
+          "name": "Elisangela Schultz",
+          "deal_count": 2
+        }
+      ]
+    },
+    "59012992": {
+      "total_members": 2,
+      "members": [
+        {
+          "id": "1662361739",
+          "name": "Lucas Carrer",
+          "deal_count": 10
+        },
+        {
+          "id": "565990070",
+          "name": "Marcella Meira",
+          "deal_count": 7
+        }
+      ]
+    },
+    "42999597": {
+      "total_members": 4,
+      "members": [
+        {
+          "id": "1157473236",
+          "name": "Carolina Valerio",
+          "deal_count": 2
+        },
+        {
+          "id": "77929935",
+          "name": "Adriana Taborda",
+          "deal_count": 2
+        },
+        {
+          "id": "80916732",
+          "name": "Andressa Kimberlyn Soares",
+          "deal_count": 1
+        },
+        {
+          "id": "81501353",
+          "name": "Eduardo Tigrinho",
+          "deal_count": 1
+        }
+      ]
+    },
+    "38221247": {
+      "total_members": 6,
+      "members": [
+        {
+          "id": "77892706",
+          "name": "Alessandra Quadros",
+          "deal_count": 4
+        },
+        {
+          "id": "77892820",
+          "name": "Cezar Nascimento",
+          "deal_count": 3
+        },
+        {
+          "id": "77892897",
+          "name": "Adriele Amaral",
+          "deal_count": 3
+        },
+        {
+          "id": "80071539",
+          "name": "Lenise Rodrigues dos Santos",
+          "deal_count": 2
+        },
+        {
+          "id": "81501343",
+          "name": "Wesley Jesus",
+          "deal_count": 2
+        },
+        {
+          "id": "165413810",
+          "name": "Karen Heua",
+          "deal_count": 2
+        }
+      ]
+    },
+    "34092788": {
+      "total_members": 3,
+      "members": [
+        {
+          "id": "1536954426",
+          "name": "Stefania Ramírez",
+          "deal_count": 2
+        },
+        {
+          "id": "80482505",
+          "name": "Oscar Morales",
+          "deal_count": 1
+        },
+        {
+          "id": "82534491",
+          "name": "Carla Bartra",
+          "deal_count": 1
+        }
+      ]
+    },
+    "33962216": {
+      "total_members": 3,
+      "members": [
+        {
+          "id": "29799469",
+          "name": "Thalia Kruger",
+          "deal_count": 3
+        },
+        {
+          "id": "79224516",
+          "name": "Henrique Manzano",
+          "deal_count": 2
+        },
+        {
+          "id": "81501351",
+          "name": "Bruna Petel",
+          "deal_count": 2
+        }
+      ]
+    },
+    "46030544": {
+      "total_members": 1,
+      "members": [
+        {
+          "id": "80482518",
+          "name": "Daniel Pérez",
+          "deal_count": 2
+        }
+      ]
+    },
+    "42183694": {
+      "total_members": 5,
+      "members": [
+        {
+          "id": "1240370707",
+          "name": "Jamille Paifer Heirozo",
+          "deal_count": 13
+        },
+        {
+          "id": "78947563",
+          "name": "Gustavo Modesto",
+          "deal_count": 2
+        },
+        {
+          "id": "76210517",
+          "name": "Beatriz Camilo",
+          "deal_count": 2
+        },
+        {
+          "id": "41594870",
+          "name": "Diego Sandeski",
+          "deal_count": 2
+        },
+        {
+          "id": "79224532",
+          "name": "Luanna Marinho",
+          "deal_count": 1
+        }
+      ]
+    },
+    "62288698": {
+      "total_members": 1,
+      "members": [
+        {
+          "id": "503744125",
+          "name": "Rogerio Almeida",
+          "deal_count": 1
+        }
+      ]
+    },
+    "16048819": {
+      "total_members": 1,
+      "members": [
+        {
+          "id": "81501349",
+          "name": "Diego Miranda",
+          "deal_count": 1
+        }
+      ]
+    },
+    "69082889": {
+      "total_members": 1,
+      "members": [
+        {
+          "id": "369524778",
+          "name": "Pedro Del Claro",
+          "deal_count": 3
+        }
+      ]
+    }
+  }
+}

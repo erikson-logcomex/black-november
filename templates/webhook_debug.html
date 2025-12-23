@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Webhook - Logcomex</title>
+    <link rel="stylesheet" href="/static/css/home-button.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #FFA500;
+            padding-bottom: 10px;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #555;
+            margin-top: 0;
+        }
+        .log-entry {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #4CAF50;
+            border-radius: 4px;
+        }
+        .log-entry.error {
+            border-left-color: #f44336;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        .notification {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #2196F3;
+            border-radius: 4px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+        }
+        .stat-card p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        .refresh-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px 5px;
+        }
+        .refresh-btn:hover {
+            background: #45a049;
+        }
+        .test-link {
+            background: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 10px 5px;
+        }
+        .test-link:hover {
+            background: #0b7dda;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-button" title="Voltar para página inicial">🏠</a>
+    <h1>🔍 Debug Webhook - Logcomex</h1>
+    
+    <div class="section">
+        <h2>Estatísticas</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <h3>{{ webhook_logs|length }}</h3>
+                <p>Webhooks Recebidos</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ notifications|length }}</h3>
+                <p>Notificações Criadas</p>
+            </div>
+            <div class="stat-card">
+                <h3>{{ notifications|selectattr('viewed', 'equalto', False)|list|length }}</h3>
+                <p>Notificações Pendentes</p>
+            </div>
+        </div>
+        
+        <div>
+            <button class="refresh-btn" onclick="location.reload()">🔄 Atualizar</button>
+            <a href="/api/webhook/test" class="test-link">🧪 Testar Webhook</a>
+            <a href="/api/webhook/logs" class="test-link" target="_blank">📋 Ver JSON (API)</a>
+            <a href="/" class="test-link">🏠 Voltar ao Funil</a>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>📥 Logs de Webhooks Recebidos ({{ webhook_logs|length }})</h2>
+        {% if webhook_logs %}
+            {% for log in webhook_logs|reverse %}
+            <div class="log-entry">
+                <div class="timestamp">
+                    <strong>📅 {{ log.timestamp }}</strong>
+                    | IP: {{ log.remote_addr }}
+                    | Método: {{ log.method }}
+                </div>
+                <h3>Headers:</h3>
+                <pre>{{ log.headers|tojson(indent=2) }}</pre>
+                <h3>Payload:</h3>
+                <pre>{{ log.payload|tojson(indent=2) }}</pre>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhum webhook recebido ainda. Teste enviando um webhook do HubSpot ou use o formulário de teste.</p>
+        {% endif %}
+    </div>
+    
+    <div class="section">
+        <h2>🔔 Notificações Criadas ({{ notifications|length }})</h2>
+        {% if notifications %}
+            {% for notification in notifications|reverse %}
+            <div class="notification">
+                <div class="timestamp">
+                    <strong>ID:</strong> {{ notification.id }} | 
+                    <strong>Visualizada:</strong> {{ '✅ Sim' if notification.viewed else '❌ Não' }} |
+                    <strong>Timestamp:</strong> {{ notification.timestamp }}
+                </div>
+                <h3>{{ notification.dealName }}</h3>
+                <p><strong>Valor:</strong> R$ {{ "%.2f"|format(notification.amount) }}</p>
+                <p><strong>Executivo:</strong> {{ notification.ownerName or 'Não informado' }}</p>
+                <p><strong>SDR:</strong> {{ notification.sdrName or 'Não informado' }}</p>
+                <p><strong>LDR:</strong> {{ notification.ldrName or 'Não informado' }}</p>
+                <p><strong>Empresa:</strong> {{ notification.companyName or 'Não informado' }}</p>
+                <pre>{{ notification|tojson(indent=2) }}</pre>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhuma notificação criada ainda.</p>
+        {% endif %}
+    </div>
+    
+    <div class="section">
+        <h2>ℹ️ Informações</h2>
+        <p><strong>URL do Webhook:</strong> <code>https://black-november-funnel-998985848998.southamerica-east1.run.app/api/webhook/deal-won</code></p>
+        <p><strong>Método:</strong> POST</p>
+        <p><strong>Formato esperado:</strong> JSON</p>
+        <p><strong>Campos obrigatórios:</strong> dealId, dealName, amount, ownerName</p>
+    </div>
+    
+    <script>
+        // Auto-refresh a cada 5 segundos
+        setTimeout(() => location.reload(), 5000);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

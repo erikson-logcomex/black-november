@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painéis Logcomex</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Logcomex">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4a0d7a 0%, #6613D0 50%, #8b2ae8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .logo {
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .logo img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+        
+        .panels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .panel-card {
+            background: rgba(254, 143, 28, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(254, 143, 28, 0.5);
+            border-radius: 20px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+        
+        .panel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 143, 28, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .panel-card:hover::before {
+            left: 100%;
+        }
+        
+        .panel-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        
+        .panel-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-10px);
+            border-color: #FE8F1C;
+            box-shadow: 0 10px 30px rgba(254, 143, 28, 0.5);
+            background: rgba(254, 143, 28, 0.2);
+        }
+        
+        .panel-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .panel-title {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .panel-description {
+            color: #b8b8b8;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .panel-badge {
+            display: inline-block;
+            background: #6613D0;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        
+        .panel-card.natal {
+            border-color: rgba(254, 143, 28, 0.6);
+        }
+        
+        .panel-card.natal:hover {
+            border-color: #FE8F1C;
+            box-shadow: 0 10px 30px rgba(254, 143, 28, 0.6);
+        }
+        
+        .panel-card.black-november {
+            border-color: rgba(254, 143, 28, 0.6);
+        }
+        
+        .panel-card.black-november:hover {
+            border-color: #FE8F1C;
+            box-shadow: 0 10px 30px rgba(254, 143, 28, 0.6);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .logo img {
+                max-width: 350px;
+            }
+            
+            .panels-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .panel-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="/static/img/logo_logcomex.png" alt="Logcomex">
+        </div>
+        
+        <h1>Painéis de Vendas</h1>
+        <p class="subtitle">Escolha o painel que deseja visualizar</p>
+        
+        <div class="panels-grid">
+            <a href="/natal" class="panel-card natal">
+                <span class="panel-icon">🎄</span>
+                <div class="panel-title">Natal Logcomex</div>
+                <div class="panel-description">
+                    Painel de vendas com tema natalino. Acompanhe metas, destaques e rankings da campanha de Natal.
+                </div>
+                <span class="panel-badge">Ativo</span>
+            </a>
+            
+            <a href="/black-november" class="panel-card black-november">
+                <span class="panel-icon">🛍️</span>
+                <div class="panel-title">Black November</div>
+                <div class="panel-description">
+                    Painel histórico da campanha Black November 2025. Visualize dados e recordes da campanha.
+                </div>
+                <span class="panel-badge" style="background: #FE8F1C;">Histórico</span>
+            </a>
+            
+            <a href="/natal/logos-supply" class="panel-card natal">
+                <span class="panel-icon">📊</span>
+                <div class="panel-title">Logos Supply</div>
+                <div class="panel-description">
+                    Acompanhe o progresso de logos da BU Supply. Visualize New e Expansão por produto.
+                </div>
+                <span class="panel-badge">Ativo</span>
+            </a>
+            
+            <a href="/natal/arr" class="panel-card natal">
+                <span class="panel-icon">💰</span>
+                <div class="panel-title">ARR - Meta 2025</div>
+                <div class="panel-description">
+                    Acompanhe o progresso do ARR (Annual Recurring Revenue) em direção à meta de R$ 225 milhões.
+                </div>
+                <span class="panel-badge">Ativo</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+

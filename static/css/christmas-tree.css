@@ -1,0 +1,37 @@
+/* Árvore de Natal - Tamanhos e posições fixos */
+.christmas-tree {
+    position: fixed;
+    bottom: 0;
+    right: -100px; /* Posição fixa em pixels */
+    width: 800px; /* Tamanho fixo em pixels */
+    height: auto; /* Mantém proporção */
+    max-height: 1200px; /* Altura máxima fixa */
+    z-index: 100;
+    pointer-events: none;
+    object-fit: contain;
+    object-position: bottom right;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Ajustes para telas menores - mantém proporção mas reduz tamanho */
+@media screen and (max-width: 1200px) {
+    .christmas-tree {
+        width: 700px;
+        max-height: 1050px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .christmas-tree {
+        width: 600px;
+        max-height: 900px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .christmas-tree {
+        width: 400px;
+        max-height: 600px;
+    }
+}

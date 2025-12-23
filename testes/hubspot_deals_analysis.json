@@ -1,0 +1,357 @@
+{
+  "total_deals": 100,
+  "sdrs": [
+    {
+      "id": "1536954426",
+      "name": "Stefania Ramírez"
+    },
+    {
+      "id": "81228428",
+      "name": "Tayrine Weber"
+    },
+    {
+      "id": "79224516",
+      "name": "Henrique Manzano"
+    },
+    {
+      "id": "1157473236",
+      "name": "Carolina Valerio"
+    },
+    {
+      "id": "77892897",
+      "name": "Adriele Amaral"
+    },
+    {
+      "id": "109003522",
+      "name": "Elisangela Schultz"
+    },
+    {
+      "id": "80916732",
+      "name": "Andressa Kimberlyn Soares"
+    },
+    {
+      "id": "82572456",
+      "name": "Leonardo Crode"
+    },
+    {
+      "id": "1544268549",
+      "name": "Mellissa Carvalho"
+    },
+    {
+      "id": "1236255023",
+      "name": "Ana Paula Rodrigues dos Santos"
+    },
+    {
+      "id": "1240370707",
+      "name": "Jamille Paifer Heirozo"
+    },
+    {
+      "id": "80071539",
+      "name": "Lenise Rodrigues dos Santos"
+    },
+    {
+      "id": "82534527",
+      "name": "Mariana Moura"
+    },
+    {
+      "id": "437264958",
+      "name": "Paula Andrade"
+    },
+    {
+      "id": "82534474",
+      "name": "Amanda França"
+    },
+    {
+      "id": "565990070",
+      "name": "Marcella Meira"
+    },
+    {
+      "id": "80071599",
+      "name": "Emanoel Muller"
+    },
+    {
+      "id": "77929935",
+      "name": "Adriana Taborda"
+    },
+    {
+      "id": "81501353",
+      "name": "Eduardo Tigrinho"
+    }
+  ],
+  "evs": [
+    {
+      "id": "212802849",
+      "name": "Lucas Zirbes"
+    },
+    {
+      "id": "655495336",
+      "name": "Rafael Hashimoto"
+    },
+    {
+      "id": "35096766",
+      "name": "Laryssa Andrade"
+    },
+    {
+      "id": "158825782",
+      "name": "Nagila Tonet"
+    },
+    {
+      "id": "484340766",
+      "name": "Rayssa Isabelle Holanda"
+    },
+    {
+      "id": "51989886",
+      "name": "David Laso"
+    },
+    {
+      "id": "80071599",
+      "name": "Emanoel Muller"
+    },
+    {
+      "id": "82735221",
+      "name": "Larissa Padilha"
+    },
+    {
+      "id": "35096765",
+      "name": "Andreza Sandim"
+    },
+    {
+      "id": "536591361",
+      "name": "Rafael Grado"
+    },
+    {
+      "id": "100173429",
+      "name": "Fernanda Cunha"
+    },
+    {
+      "id": "78947587",
+      "name": "Marllon Rodrigues"
+    },
+    {
+      "id": "1440284101",
+      "name": "Leonardo Cunha"
+    },
+    {
+      "id": "80071503",
+      "name": "César Schroeder"
+    }
+  ],
+  "ldrs": [
+    {
+      "id": "110560354",
+      "name": "Keren Dias"
+    },
+    {
+      "id": "666914906",
+      "name": "Claudene Martins Genovez"
+    },
+    {
+      "id": "482157839",
+      "name": "Kaique Gabriel Lourenço"
+    },
+    {
+      "id": "51995472",
+      "name": "Bruno Dias"
+    },
+    {
+      "id": "117705630",
+      "name": "Carla do Vale"
+    },
+    {
+      "id": "231255003",
+      "name": "Bianca Aguiar"
+    }
+  ],
+  "sample_deals": [
+    {
+      "id": "48658427168",
+      "properties": {
+        "analista_comercial": "82735221",
+        "createdate": "2025-11-10T12:52:56.410Z",
+        "criado_por_": "666914906",
+        "dealname": "Mafatlal Industries",
+        "dealstage": "6810521",
+        "hs_lastmodifieddate": "2025-11-17T11:24:17.829Z",
+        "hs_object_id": "48658427168",
+        "hubspot_owner_id": "82735221",
+        "pipeline": "6810518",
+        "pr_vendedor": "565990070"
+      },
+      "createdAt": "2025-11-10T12:52:56.410Z",
+      "updatedAt": "2025-11-17T11:24:17.829Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48658427168"
+    },
+    {
+      "id": "48779369292",
+      "properties": {
+        "analista_comercial": null,
+        "createdate": "2025-11-10T12:57:59.979Z",
+        "criado_por_": null,
+        "dealname": "Inbound - Cool Cat - Oliverio Novoa",
+        "dealstage": "1070885942",
+        "hs_lastmodifieddate": "2025-11-17T11:24:21.498Z",
+        "hs_object_id": "48779369292",
+        "hubspot_owner_id": "1536954426",
+        "pipeline": "6810518",
+        "pr_vendedor": "1536954426"
+      },
+      "createdAt": "2025-11-10T12:57:59.979Z",
+      "updatedAt": "2025-11-17T11:24:21.498Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48779369292"
+    },
+    {
+      "id": "48783681958",
+      "properties": {
+        "analista_comercial": "536591361",
+        "createdate": "2025-11-10T12:59:55.872Z",
+        "criado_por_": null,
+        "dealname": "[CS] CS - INOVARE BRASIL ASSESSORIA E TRADING LTDA",
+        "dealstage": "1090664356",
+        "hs_lastmodifieddate": "2025-11-17T11:24:19.172Z",
+        "hs_object_id": "48783681958",
+        "hubspot_owner_id": "1157473236",
+        "pipeline": "4007305",
+        "pr_vendedor": "1157473236"
+      },
+      "createdAt": "2025-11-10T12:59:55.872Z",
+      "updatedAt": "2025-11-17T11:24:19.172Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48783681958"
+    },
+    {
+      "id": "48596659859",
+      "properties": {
+        "analista_comercial": "35096766",
+        "createdate": "2025-11-10T13:10:45.486Z",
+        "criado_por_": "117705630",
+        "dealname": "UNIK COMERCIAL IMPORTADORA E EXPORTADORA LTDA - CNPJ: 13.994.860/0002-10",
+        "dealstage": "6810525",
+        "hs_lastmodifieddate": "2025-11-17T11:24:22.134Z",
+        "hs_object_id": "48596659859",
+        "hubspot_owner_id": "35096766",
+        "pipeline": "6810518",
+        "pr_vendedor": "80071539"
+      },
+      "createdAt": "2025-11-10T13:10:45.486Z",
+      "updatedAt": "2025-11-17T11:24:22.134Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48596659859"
+    },
+    {
+      "id": "48777283099",
+      "properties": {
+        "analista_comercial": "655495336",
+        "createdate": "2025-11-10T13:11:47.183Z",
+        "criado_por_": null,
+        "dealname": "[CS] CS - MUNDIAL IMPORTACAO E EXPORTACAO LTDA",
+        "dealstage": "1090646389",
+        "hs_lastmodifieddate": "2025-11-17T11:24:19.310Z",
+        "hs_object_id": "48777283099",
+        "hubspot_owner_id": "1240370707",
+        "pipeline": "4007305",
+        "pr_vendedor": "1240370707"
+      },
+      "createdAt": "2025-11-10T13:11:47.183Z",
+      "updatedAt": "2025-11-17T11:24:19.310Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48777283099"
+    },
+    {
+      "id": "48756321917",
+      "properties": {
+        "analista_comercial": "212802849",
+        "createdate": "2025-11-10T13:16:05.032Z",
+        "criado_por_": null,
+        "dealname": "CS - RUCOMEX TRADING E COMERCIO EXTERIOR LTDA - CNPJ: 48.628.148/0002-82",
+        "dealstage": "12864262",
+        "hs_lastmodifieddate": "2025-11-17T09:03:32.628Z",
+        "hs_object_id": "48756321917",
+        "hubspot_owner_id": "165437457",
+        "pipeline": "1169974",
+        "pr_vendedor": "79224516"
+      },
+      "createdAt": "2025-11-10T13:16:05.032Z",
+      "updatedAt": "2025-11-17T09:03:32.628Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48756321917"
+    },
+    {
+      "id": "48635181209",
+      "properties": {
+        "analista_comercial": "80071503",
+        "createdate": "2025-11-10T13:16:14.272Z",
+        "criado_por_": null,
+        "dealname": "ACRON IMPORTACAO E COMERCIO DE FERTILIZANTES BRASIL LTDA. - CNPJ: 30.400.299/0001-32",
+        "dealstage": "6810523",
+        "hs_lastmodifieddate": "2025-11-17T11:24:18.099Z",
+        "hs_object_id": "48635181209",
+        "hubspot_owner_id": "80071503",
+        "pipeline": "6810518",
+        "pr_vendedor": "77929935"
+      },
+      "createdAt": "2025-11-10T13:16:14.272Z",
+      "updatedAt": "2025-11-17T11:24:18.099Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48635181209"
+    },
+    {
+      "id": "48658427931",
+      "properties": {
+        "analista_comercial": "80071599",
+        "createdate": "2025-11-10T13:20:47.211Z",
+        "criado_por_": "482157839",
+        "dealname": "VEDANTES E ISOLANTES LIDER LTDA - CNPJ: 62.422.654/0001-60",
+        "dealstage": "7417230",
+        "hs_lastmodifieddate": "2025-11-17T12:47:46.927Z",
+        "hs_object_id": "48658427931",
+        "hubspot_owner_id": "80071599",
+        "pipeline": "6810518",
+        "pr_vendedor": "80071599"
+      },
+      "createdAt": "2025-11-10T13:20:47.211Z",
+      "updatedAt": "2025-11-17T12:47:46.927Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48658427931"
+    },
+    {
+      "id": "48596660524",
+      "properties": {
+        "analista_comercial": "158825782",
+        "createdate": "2025-11-10T13:28:34.466Z",
+        "criado_por_": "117705630",
+        "dealname": "ALTERNATIVA INDUSTRIA E COMERCIO DE MAQUINAS E PRODUTOS GRAFICOS LTDA - CNPJ: 18.270.945/0001-99",
+        "dealstage": "7417230",
+        "hs_lastmodifieddate": "2025-11-17T11:24:23.472Z",
+        "hs_object_id": "48596660524",
+        "hubspot_owner_id": "158825782",
+        "pipeline": "6810518",
+        "pr_vendedor": "1236255023"
+      },
+      "createdAt": "2025-11-10T13:28:34.466Z",
+      "updatedAt": "2025-11-17T11:24:23.472Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48596660524"
+    },
+    {
+      "id": "48783048314",
+      "properties": {
+        "analista_comercial": "484340766",
+        "createdate": "2025-11-10T13:29:52.426Z",
+        "criado_por_": "51995472",
+        "dealname": "BLUECOM SOLUCOES DE CONECTIVIDADE E INFORMATICA LTDA - EM RECUPERACAO JUDICIAL - CNPJ: 02.686.151/0001-70",
+        "dealstage": "6810523",
+        "hs_lastmodifieddate": "2025-11-17T11:24:19.615Z",
+        "hs_object_id": "48783048314",
+        "hubspot_owner_id": "484340766",
+        "pipeline": "6810518",
+        "pr_vendedor": "82534474"
+      },
+      "createdAt": "2025-11-10T13:29:52.426Z",
+      "updatedAt": "2025-11-17T11:24:19.615Z",
+      "archived": false,
+      "url": "https://app.hubspot.com/contacts/5455473/record/0-3/48783048314"
+    }
+  ]
+}

@@ -1,0 +1,841 @@
+/* Reset e Base (MANTÉM PADRÃO DO FUNNEL.HTML) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+}
+
+/* Twemoji - garante que emojis renderizem no tamanho correto */
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+    display: inline;
+}
+
+/* Imagens de Layout Padrão (IDÊNTICO ao funnel.html e metas.html) */
+.black-november-logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    max-width: 320px;
+    height: auto;
+    z-index: 100;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.confidencial-logo {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    height: auto;
+    z-index: 101;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.skull-sword-image {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 20px;
+    max-width: 20px;
+    height: auto;
+    z-index: 100;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.orange-band-image {
+    position: fixed;
+    bottom: -25px;
+    left: -20px;
+    max-width: 550px;
+    height: auto;
+    z-index: 100;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.purple-band-image {
+    position: fixed;
+    bottom: -25px;
+    right: -20px;
+    max-width: 550px;
+    height: auto;
+    z-index: 100;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.bruno-megafone-image {
+    position: fixed;
+    bottom: 1px;
+    right: 1px;
+    max-width: 320px;
+    height: auto;
+    z-index: 99;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+/* Container Principal */
+.container {
+    max-width: 1400px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 100px 40px 20px;
+    position: relative;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 100px 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-left-color: #FE8F1C;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Hall Slides Container */
+.hall-slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hall Slide Individual */
+.hall-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.hall-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Header */
+.hall-header {
+    text-align: center;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.hall-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FE8F1C;
+    text-shadow: 0 0 20px rgba(254, 143, 28, 0.5);
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+
+.hall-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Profile Section */
+.profile-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    flex: 1;
+    overflow: hidden;
+    align-items: flex-start;
+}
+
+/* MVP Card */
+.mvp-card {
+    background: linear-gradient(135deg, rgba(123, 47, 221, 0.2) 0%, rgba(254, 143, 28, 0.2) 100%);
+    border: 3px solid rgba(254, 143, 28, 0.5);
+    border-radius: 25px;
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    animation: pulseGlow 3s ease-in-out infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(254, 143, 28, 0.3);
+    }
+    50% {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(254, 143, 28, 0.6);
+    }
+}
+
+.mvp-badge {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+}
+
+.mvp-photo-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 110px auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8B6914, #DAA520, #FFD700, #FFA500, #8B6914);
+    padding: 5px;
+    box-shadow: 
+        0 0 30px rgba(218, 165, 32, 0.8),
+        0 0 50px rgba(255, 215, 0, 0.5);
+}
+
+.mvp-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: none;
+    display: block;
+}
+
+.mvp-crown {
+    position: absolute;
+    top: -75px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: auto;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.8));
+    z-index: 10;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+.mvp-name {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FFD700;
+    margin-top: -15px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.mvp-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: -5px 0;
+}
+
+.mvp-stat {
+    text-align: center;
+}
+
+.mvp-stat-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FE8F1C;
+    text-shadow: 0 0 15px rgba(254, 143, 28, 0.5);
+}
+
+.mvp-stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.mvp-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    display: none; /* Esconde os badges com texto no MVP */
+}
+
+.mvp-badges-emoji-stack {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+.mvp-badge-emoji {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    animation: badgeAppear 0.5s ease-out backwards;
+    transition: transform 0.3s ease;
+}
+
+/* Estilo para badges que são imagens */
+.mvp-badge-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+.mvp-badge-emoji:nth-child(1) { animation-delay: 0.1s; }
+.mvp-badge-emoji:nth-child(2) { animation-delay: 0.2s; }
+.mvp-badge-emoji:nth-child(3) { animation-delay: 0.3s; }
+.mvp-badge-emoji:nth-child(4) { animation-delay: 0.4s; }
+.mvp-badge-emoji:nth-child(5) { animation-delay: 0.5s; }
+.mvp-badge-emoji:nth-child(6) { animation-delay: 0.6s; }
+.mvp-badge-emoji:nth-child(7) { animation-delay: 0.7s; }
+.mvp-badge-emoji:nth-child(8) { animation-delay: 0.8s; }
+
+.mvp-badge-emoji:hover {
+    transform: scale(1.2);
+}
+
+.badge-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(254, 143, 28, 0.5);
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    animation: badgeAppear 0.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.badge-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(254, 143, 28, 0.6);
+}
+
+@keyframes badgeAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.badge-item.volume {
+    border-color: rgba(123, 47, 221, 0.7);
+    color: #7B2FDD;
+}
+
+.badge-item.valor {
+    border-color: rgba(255, 215, 0, 0.7);
+    color: #FFD700;
+}
+
+.badge-item.horario {
+    border-color: rgba(76, 175, 80, 0.7);
+    color: #4CAF50;
+}
+
+.badge-item.velocidade {
+    border-color: rgba(254, 143, 28, 0.7);
+    color: #FE8F1C;
+}
+
+/* Top List */
+.top-list {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px 18px;
+    margin: 20px;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.list-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #FE8F1C;
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.ranking-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    animation: slideInRight 0.5s ease-out;
+}
+
+.ranking-item:hover {
+    transform: translateX(5px);
+    border-color: rgba(254, 143, 28, 0.5);
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.ranking-position {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #FFD700;
+    min-width: 50px;
+    text-align: center;
+}
+
+.ranking-position.gold {
+    color: #FFD700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.ranking-position.silver {
+    color: #C0C0C0;
+    text-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
+}
+
+.ranking-position.bronze {
+    color: #CD7F32;
+    text-shadow: 0 0 15px rgba(205, 127, 50, 0.6);
+}
+
+/* Posições 4º e 5º com fonte menor mas mesmo alinhamento */
+.ranking-item:nth-child(4) .ranking-position,
+.ranking-item:nth-child(5) .ranking-position {
+    font-size: 2rem;
+    min-width: 57px;
+}
+
+.ranking-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(254, 143, 28, 0.5);
+}
+
+.ranking-info {
+    flex: 1;
+}
+
+.ranking-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 3px;
+}
+
+.ranking-stats {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ranking-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.ranking-badge {
+    background: rgba(254, 143, 28, 0.2);
+    border: 1px solid rgba(254, 143, 28, 0.5);
+    border-radius: 10px;
+    padding: 3px 8px;
+    font-size: 1rem;
+}
+
+.ranking-badge-image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+/* Slide Indicators */
+.slide-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #FE8F1C;
+    box-shadow: 0 0 15px rgba(254, 143, 28, 0.8);
+    transform: scale(1.2);
+}
+
+.indicator:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.empty-state-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state-text {
+    font-size: 1.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .profile-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .mvp-photo-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .mvp-name {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 100px 20px 20px;
+    }
+    
+    .black-november-logo {
+        max-width: 200px;
+    }
+    
+    .skull-sword-image {
+        width: 15px;
+    }
+    
+    .orange-band-image,
+    .purple-band-image,
+    .bruno-megafone-image {
+        display: none;
+    }
+    
+    .hall-title {
+        font-size: 1.8rem;
+    }
+    
+    .hall-subtitle {
+        font-size: 1rem;
+    }
+    
+    .mvp-photo-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .mvp-stat-value {
+        font-size: 2rem;
+    }
+    
+    .ranking-position {
+        font-size: 1.5rem;
+        min-width: 40px;
+    }
+    
+    .ranking-photo {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* ============================================================================
+   LEGENDA DE BADGES
+   ============================================================================ */
+
+/* Sidebar de legenda - fixada no lado direito (sem scroll para TV) */
+.badges-legend-card {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(22, 33, 62, 0.98));
+    backdrop-filter: blur(10px);
+    border-left: 3px solid rgba(254, 143, 28, 0.5);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.legend-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #FE8F1C;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 10px rgba(254, 143, 28, 0.5);
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(254, 143, 28, 0.3);
+    flex-shrink: 0;
+}
+
+/* Container com overflow para esconder itens que passam pelo título */
+.legend-scroll-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.legend-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Remove justify-content para permitir rolagem */
+    animation: scrollCredits 40s linear infinite;
+}
+
+/* Animação de créditos de filme - rolagem vertical infinita */
+@keyframes scrollCredits {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%); /* Rola metade (conteúdo duplicado) */
+    }
+}
+
+/* Pausa a animação ao passar o mouse */
+.legend-grid:hover {
+    animation-play-state: paused;
+}
+
+/* Título de seção na legenda */
+.legend-section-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #FE8F1C;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    padding-left: 5px;
+    border-left: 3px solid #FE8F1C;
+    opacity: 0.9;
+}
+
+.legend-section-title:first-child {
+    margin-top: 0;
+}
+
+.legend-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-badge-item:hover {
+    background: rgba(254, 143, 28, 0.15);
+    border-color: rgba(254, 143, 28, 0.5);
+    transform: translateX(-5px);
+}
+
+.badge-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+/* Imagens de badges na legenda */
+.badge-icon-image {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+.badge-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.badge-info strong {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #FFF;
+    line-height: 1.2;
+}
+
+.badge-info small {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.2;
+}
+
+/* Ajusta o conteúdo principal para não ficar atrás da sidebar */
+.hall-container {
+    margin-right: 280px;
+}
+
+/* Responsivo para legenda */
+@media (max-width: 768px) {
+    .badges-legend {
+        padding: 20px;
+        max-height: 70vh;
+    }
+    
+    .legend-title {
+        font-size: 1.5rem;
+    }
+    
+    .legend-category {
+        font-size: 1.1rem;
+    }
+    
+    .legend-items {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .legend-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .legend-badge {
+        min-width: auto;
+    }
+    
+    .legend-desc {
+        text-align: left;
+        font-size: 0.85rem;
+    }
+    
+    .legend-toggle {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .legend-text {
+        display: none;
+    }
+}

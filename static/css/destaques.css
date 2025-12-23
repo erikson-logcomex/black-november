@@ -1,0 +1,404 @@
+/* Grid de Destaques - 3 cards centralizados */
+.destaques-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 90%;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    justify-items: center;
+}
+
+.destaques-card {
+    min-height: auto;
+    height: 100%;
+    padding: 20px !important;
+    margin: 10px !important;
+    width: 100%;
+    max-width: 380px;
+    min-width: 320px;
+}
+
+/* Ajustes para cards maiores na TV */
+.destaques-card .mvp-photo-wrapper {
+    width: 220px;
+    height: 220px;
+    margin: 90px auto 20px;
+}
+
+.destaques-card .mvp-crown {
+    width: 80px;
+    top: -50px;
+}
+
+.destaques-card .mvp-name {
+    font-size: 1.6rem;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.destaques-card .mvp-stats {
+    gap: 25px;
+    margin: 10px 0;
+}
+
+.destaques-card .mvp-stat-value {
+    font-size: 2.2rem;
+}
+
+.destaques-card .mvp-stat-label {
+    font-size: 0.9rem;
+}
+
+.destaques-card .mvp-badge {
+    font-size: 0.85rem;
+    padding: 8px 20px;
+}
+
+/* Imagem Paty Rifiski - Canto inferior esquerdo */
+.paty-rifiski-image,
+.paty-rifiski-video-canvas {
+    position: fixed;
+    bottom: 1px;
+    left: 40px;
+    max-width: 400px;
+    height: auto;
+    z-index: 101;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+.paty-rifiski-video {
+    display: none; /* Vídeo é escondido, apenas o canvas é mostrado */
+}
+
+/* ============================================================================
+   PÓDIO - Layout de Top 3
+   ============================================================================ */
+
+.podio-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3rem;
+    padding: 4rem 2rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 600px;
+    overflow: visible;
+}
+
+/* Imagem Troféu - Canto direito inferior */
+.trophy-image,
+.trophy-video-canvas {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    max-width: 500px;
+    height: auto;
+    z-index: 101;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+    /* O chromakey é removido via JavaScript usando canvas */
+    opacity: 0;
+    animation: fadeInTrophy 0.8s ease-in-out forwards;
+}
+
+.trophy-video {
+    display: none; /* Vídeo é escondido, apenas o canvas é mostrado */
+}
+
+@keyframes fadeInTrophy {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.podio-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, rgba(102, 19, 208, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
+    border: 3px solid;
+    border-radius: 20px;
+    padding: 1.5rem 1.5rem 2rem;
+    width: 320px;
+    height: 500px;
+    transition: transform 0.3s ease;
+    overflow: visible;
+    box-sizing: border-box;
+}
+
+.podio-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Posições do pódio */
+.podio-card.position-1 {
+    order: 2; /* Meio (1º lugar) */
+    border-color: #FFD700;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 140, 0, 0.3) 100%);
+    width: 360px;
+    height: 580px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+}
+
+.podio-card.position-2 {
+    order: 1; /* Esquerda (2º lugar) */
+    border-color: #C0C0C0;
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.3) 0%, rgba(150, 150, 150, 0.3) 100%);
+    width: 300px;
+    height: 480px;
+    box-shadow: 0 8px 25px rgba(192, 192, 192, 0.3);
+}
+
+.podio-card.position-3 {
+    order: 3; /* Direita (3º lugar) */
+    border-color: #CD7F32;
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.3) 0%, rgba(180, 100, 30, 0.3) 100%);
+    width: 300px;
+    height: 460px;
+    box-shadow: 0 6px 20px rgba(205, 127, 50, 0.3);
+}
+
+/* Badge de posição */
+.podio-position {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border: 4px solid;
+    z-index: 10;
+}
+
+.podio-position.position-1 {
+    background: #FFD700;
+    border-color: #FFA500;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.podio-position.position-2 {
+    background: #C0C0C0;
+    border-color: #A0A0A0;
+    color: #000;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+}
+
+.podio-position.position-3 {
+    background: #CD7F32;
+    border-color: #A06020;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(205, 127, 50, 0.5);
+}
+
+/* Foto do pódio */
+.podio-photo-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 30px auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid;
+    flex-shrink: 0;
+}
+
+.podio-card.position-1 .podio-photo-wrapper {
+    width: 240px;
+    height: 240px;
+    margin: 35px auto 20px;
+    border-color: #FFD700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+.podio-card.position-2 .podio-photo-wrapper {
+    border-color: #C0C0C0;
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
+}
+
+.podio-card.position-3 .podio-photo-wrapper {
+    border-color: #CD7F32;
+    box-shadow: 0 0 20px rgba(205, 127, 50, 0.5);
+}
+
+.podio-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Nome */
+.podio-name {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin: 0 0 15px;
+    padding: 0 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 0;
+    max-width: 100%;
+}
+
+.podio-card.position-1 .podio-name {
+    font-size: 2rem;
+    margin: 0 0 20px;
+}
+
+.podio-card.position-2 .podio-name,
+.podio-card.position-3 .podio-name {
+    font-size: 1.6rem;
+}
+
+/* Estatísticas */
+.podio-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: auto;
+    padding-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.podio-card.position-1 .podio-stats {
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+.podio-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.podio-stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.podio-card.position-1 .podio-stat-value {
+    font-size: 2.8rem;
+}
+
+.podio-card.position-2 .podio-stat-value,
+.podio-card.position-3 .podio-stat-value {
+    font-size: 2rem;
+}
+
+.podio-stat-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.podio-card.position-1 .podio-stat-label {
+    font-size: 1rem;
+}
+
+/* Responsivo */
+@media (max-width: 1400px) {
+    .podio-container {
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+    
+    .podio-card {
+        min-width: 240px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .podio-card.position-1 {
+        min-height: 450px;
+    }
+    
+    .podio-card.position-2 {
+        min-height: 380px;
+    }
+    
+    .podio-card.position-3 {
+        min-height: 340px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .podio-container {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .podio-card {
+        min-width: 220px;
+    }
+    
+    .podio-card.position-1 {
+        order: 1;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .podio-card.position-2 {
+        order: 2;
+    }
+    
+    .podio-card.position-3 {
+        order: 3;
+    }
+}
+
+/* Responsivo */
+@media (max-width: 1920px) {
+    .destaques-grid {
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 1400px) {
+    .destaques-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 95%;
+    }
+    
+    .destaques-card {
+        max-width: 100%;
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .destaques-grid {
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+    
+    .destaques-card {
+        min-height: 350px;
+    }
+}
+

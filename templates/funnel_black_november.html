@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Black November Logcomex</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Black November">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <link rel="stylesheet" href="/static/css/funnel.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration_themes.css">
+    <link rel="stylesheet" href="/static/css/top_evs_ranking.css">
+    <link rel="stylesheet" href="/static/css/home-button.css">
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <filter id="chromakey" x="0" y="0" width="100%" height="100%">
+                <!-- Remove fundo verde (chroma key) -->
+                <feColorMatrix type="matrix" 
+                    values="1 0 0 0 0
+                            0 1.5 0 0 0
+                            0 0 1 0 0
+                            0 0 0 1 0"/>
+                <feComponentTransfer>
+                    <feFuncA type="discrete" tableValues="0 1"/>
+                </feComponentTransfer>
+            </filter>
+        </defs>
+    </svg>
+</head>
+<body>
+    <a href="/" class="home-button" title="Voltar para página inicial">🏠</a>
+    <img src="/static/img/confidencial.png" alt="Confidencial" class="confidencial-logo">
+    
+    <!-- Botões de Teste -->
+    <button id="testMilestoneBtn" class="test-milestone-btn" title="Testar animação dos marcos">
+        🎯
+    </button>
+    <button id="testDealCelebrationBtn" class="test-deal-celebration-btn" title="Testar celebração de deal" style="display: none;">
+        🎉
+    </button>
+    
+    <!-- Botão de Configurações (Modo Manual) -->
+    <button id="settingsBtn" class="settings-btn" title="Configurações de faturamento">
+        ⚙️
+    </button>
+    
+    <!-- Menu Suspenso de Configurações -->
+    <div id="settingsMenu" class="settings-menu" style="display: none;">
+        <div class="settings-menu-header">
+            <h3>Configurações de Faturamento</h3>
+            <button id="closeSettingsBtn" class="close-settings-btn">×</button>
+        </div>
+        <div class="settings-menu-content">
+            <div class="settings-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="manualModeToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Modo Manual</span>
+            </div>
+            <div id="manualModeSettings" class="manual-mode-settings" style="display: none;">
+                <label for="additionalValue">Valor Adicional (R$):</label>
+                <input type="number" id="additionalValue" min="0" step="1000" placeholder="0" value="0">
+                <p class="settings-hint">Este valor será somado ao faturamento da API</p>
+            </div>
+            <div class="settings-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="renewalPipelineToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Pipeline Renovação</span>
+            </div>
+            <p class="settings-hint" style="margin-top: -15px; margin-bottom: 0;">Inclui receita do pipeline de Renovação (7075777) no faturamento</p>
+        </div>
+    </div>
+
+    <!-- Componente Universal de Celebração -->
+    {% include 'includes/celebration_component.html' %}
+    
+    <!-- Elementos da Chuva de Dinheiro (Marcos) -->
+    <video id="moneyRainVideo" preload="auto" muted playsinline style="display: none;">
+        <source src="/static/media/chuva_dinheiro.mp4" type="video/mp4">
+    </video>
+    <audio id="moneyRainAudio" preload="auto">
+        <source src="/static/media/musica_silvio_santos.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="container">
+        <img src="/static/img/blck_november.png" alt="Black November Logcomex" class="black-november-logo">
+        <img src="/static/img/%23facanacaveira.png" alt="Faca na Caveira" class="skull-sword-image">
+        <img src="/static/img/faixa_laranja.png" alt="Faixa Laranja" class="orange-band-image">
+        <img src="/static/img/feixa_roxa.png" alt="Faixa Roxa" class="purple-band-image">
+        <div class="funnel-container">
+            <div class="funnel-main-value" id="mainValue">R$ 1.500.000</div>
+            <div class="current-revenue" id="currentRevenue" style="display: none;"></div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <div>Carregando dados...</div>
+            </div>
+            
+            <div class="funnel-wrapper" id="funnelWrapper" style="display: none;">
+                <div class="funnel-shape">
+                    <div class="funnel-fill" id="funnelFill"></div>
+                    
+                    <!-- Marcos do funil (do menor na base para o maior no topo) -->
+                    <div class="milestone" style="top: 20%;" data-value="1200000">
+                        <span class="milestone-label">R$ 1.200.000</span>
+                    </div>
+                    <div class="milestone" style="top: 40%;" data-value="900000">
+                        <span class="milestone-label">R$ 900.000</span>
+                    </div>
+                    <div class="milestone" style="top: 60%;" data-value="600000">
+                        <span class="milestone-label">R$ 600.000</span>
+                    </div>
+                    <div class="milestone" style="top: 80%;" data-value="300000">
+                        <span class="milestone-label">R$ 300.000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="current-value-indicator" id="currentIndicator" style="display: none;"></div>
+            <svg class="value-connection-line" id="connectionLine" style="display: none;">
+                <line id="connectionLinePath" x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="2" opacity="0.9"/>
+            </svg>
+            
+            <div class="cso-image" id="csoImage" style="display: none;">
+                <img src="/static/img/allan_santos.png" alt="CSO Allan Santos" class="mouth-closed">
+                <img src="/static/img/allan_santos_boca_aberta.png" alt="CSO Allan Santos" class="mouth-open">
+            </div>
+            <div class="cso-video-container" id="csoVideoContainer" style="display: none;">
+                <video id="csoVideo" class="cso-video" autoplay muted playsinline>
+                    <!-- Use o melhor vídeo que você gerou. Você pode trocar o src para testar diferentes versões -->
+                    <source src="/static/media/allan_danca.mp4" type="video/mp4">
+                </video>
+                <audio id="silvioMusic" loop>
+                    <source src="/static/media/musica_silvio_santos.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+            <div class="roulette-container" id="rouletteContainer" style="display: none;">
+                <img src="/static/img/roleta.png" alt="Roleta" class="roulette-wheel">
+                <img src="/static/img/ponta_roleta.png" alt="Ponta da Roleta" class="roulette-pointer">
+            </div>
+            <div class="speech-bubble" id="speechBubble" style="display: none;">
+                <span class="speech-text" id="speechText">MAÔEEEEEE</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/javascript/funnel.js"></script>
+    <script src="/static/javascript/celebration_theme_manager.js"></script>
+    <script src="/static/javascript/deal_celebration.js"></script>
+    
+    <!-- PWA Service Worker Registration e Notificações Push -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    // Registra o Service Worker
+                    const registration = await navigator.serviceWorker.register('/static/service-worker.js');
+                    console.log('Service Worker registrado com sucesso:', registration.scope);
+                    
+                    // Verifica se o navegador suporta notificações
+                    if (!('Notification' in window)) {
+                        console.warn('❌ Este navegador não suporta notificações');
+                        return;
+                    }
+                    
+                    console.log('📱 Status de notificação atual:', Notification.permission);
+                    
+                    // Aguarda 3 segundos e solicita permissão de notificação
+                    setTimeout(async () => {
+                        try {
+                            if (Notification.permission === 'default') {
+                                console.log('🔔 Solicitando permissão de notificação...');
+                                const permission = await Notification.requestPermission();
+                                console.log('📋 Resposta da permissão:', permission);
+                                
+                                if (permission === 'granted') {
+                                    console.log('✅ Permissão de notificação concedida!');
+                                    // Mostra uma notificação de teste para confirmar que funciona
+                                    registration.showNotification('Notificações Ativadas! 🎉', {
+                                        body: 'Você receberá notificações de novos deals ganhos!',
+                                        icon: '/static/img/icon-192.png',
+                                        badge: '/static/img/icon-192.png',
+                                        tag: 'welcome',
+                                        requireInteraction: false,
+                                        vibrate: [200, 100, 200]
+                                    });
+                                } else if (permission === 'denied') {
+                                    console.log('❌ Permissão de notificação negada pelo usuário');
+                                } else {
+                                    console.log('⚠️ Permissão de notificação ignorada/fechada');
+                                }
+                            } else if (Notification.permission === 'granted') {
+                                console.log('✅ Permissão de notificação já concedida anteriormente');
+                                // Mostra notificação de boas-vindas mesmo se já tiver permissão
+                                registration.showNotification('Bem-vindo! 🎉', {
+                                    body: 'Notificações estão ativas para novos deals!',
+                                    icon: '/static/img/icon-192.png',
+                                    tag: 'welcome-back',
+                                    requireInteraction: false
+                                });
+                            } else if (Notification.permission === 'denied') {
+                                console.log('❌ Permissão de notificação foi negada anteriormente');
+                                console.log('💡 Para ativar: Clique no ícone de cadeado na barra de endereço > Configurações do site > Notificações > Permitir');
+                            }
+                        } catch (error) {
+                            console.error('❌ Erro ao solicitar permissão de notificação:', error);
+                        }
+                    }, 3000);
+                } catch (error) {
+                    console.log('Falha ao registrar Service Worker:', error);
+                }
+            });
+        } else {
+            console.warn('❌ Service Worker não é suportado neste navegador');
+        }
+    </script>
+    
+    <!-- Sistema de Rotação Automática -->
+    <script>
+        // Verifica se está no modo de rotação automática
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('aleatorio')) {
+            // Tenta desbloquear áudio automaticamente no modo aleatório
+            // Navegadores permitem autoplay quando vem de navegação programática
+            window.addEventListener('load', () => {
+                const audioElements = [
+                    document.getElementById('moneyRainAudio'),
+                    document.getElementById('cornetAudio')
+                ];
+                
+                audioElements.forEach(audio => {
+                    if (audio) {
+                        audio.volume = 0.01; // Volume muito baixo
+                        const playPromise = audio.play();
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                audio.pause();
+                                audio.currentTime = 0;
+                                audio.volume = 1.0; // Restaura volume
+                                console.log('✅ Áudio desbloqueado automaticamente:', audio.id);
+                            }).catch(err => {
+                                console.log('⚠️ Áudio não desbloqueado automaticamente (normal):', audio.id);
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // NOTA: O timer de navegação agora é iniciado pelo JavaScript (funnel.js)
+            // após os dados carregarem, garantindo que o tempo só comece a contar depois
+            // que os dados estiverem prontos.
+        }
+    </script>
+
+    <!-- Twemoji para emojis consistentes -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script>
+        // Aplica Twemoji assim que a página carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('🎨 Aplicando Twemoji no Funil...');
+            if (typeof twemoji !== 'undefined') {
+                twemoji.parse(document.body, {
+                    base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
+                });
+                console.log('✅ Twemoji aplicado com sucesso no Funil!');
+            } else {
+                console.error('❌ Twemoji não carregado!');
+            }
+        });
+    </script>
+    
+    <!-- Script do Botão de Teste de Marcos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const testBtn = document.getElementById('testMilestoneBtn');
+            if (testBtn) {
+                testBtn.addEventListener('click', () => {
+                    console.log('🎯 Botão de teste clicado! Disparando animação dos marcos...');
+                    
+                    // Dispara a chuva de dinheiro com música
+                    if (typeof triggerMoneyRain === 'function') {
+                        triggerMoneyRain();
+                        console.log('✅ Chuva de dinheiro disparada!');
+                    } else {
+                        console.error('❌ Função triggerMoneyRain não encontrada!');
+                    }
+                    
+                    // Feedback visual no botão
+                    testBtn.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        testBtn.style.transform = '';
+                    }, 100);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

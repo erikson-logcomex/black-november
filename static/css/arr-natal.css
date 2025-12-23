@@ -1,0 +1,212 @@
+/**
+ * CSS para página de ARR - Natal
+ */
+
+/* Título Principal */
+.arr-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.4),
+        3px 3px 8px rgba(0,0,0,0.7);
+    white-space: nowrap;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+    text-align: center;
+    width: fit-content;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* Container do Gauge Semicircular */
+.gauge-container {
+    position: fixed;
+    top: 350px; /* Posição fixa em pixels para evitar desalinhamento com zoom */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Wrapper do Gauge Semicircular */
+.gauge-wrapper {
+    position: relative;
+    width: 1200px; /* Largura aumentada para o gauge semicircular */
+    height: 850px; /* Altura aumentada para não cortar o gauge */
+    overflow: visible; /* Permite que o brilho seja visível fora do container */
+    padding-top: 500px; /* Espaço superior aumentado para o arco não ser cortado */
+}
+
+.gauge-svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -200px; /* Move o SVG para cima para compensar o padding e não cortar o topo */
+    left: 0;
+}
+
+.gauge-background {
+    stroke: rgba(76, 18, 114, 0.2);
+}
+
+.gauge-progress {
+    stroke: #FE8F1C; /* Laranja Logcomex */
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-out;
+    filter: drop-shadow(0 0 15px rgba(254, 143, 28, 0.8));
+}
+
+/* Container de Métricas (separado do gauge) */
+.metrics-container {
+    position: fixed;
+    top: 450px; /* Posição fixa em pixels, abaixo do gauge */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.arr-main-value {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #FE8F1C; /* Laranja Logcomex */
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(254, 143, 28, 0.6);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.1;
+}
+
+.arr-label {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.arr-metrics {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1200px;
+    gap: 60px;
+}
+
+.arr-metric-item {
+    text-align: center;
+    flex: 1;
+}
+
+.arr-metric-label {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.arr-metric-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FE8F1C; /* Laranja Logcomex */
+    text-shadow: 0 0 15px rgba(254, 143, 28, 0.5);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Loading */
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 1000;
+    font-size: 1.5rem;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #FE8F1C; /* Laranja Logcomex */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    .arr-title {
+        font-size: 2.5rem;
+        top: 60px;
+    }
+    
+    .gauge-container {
+        top: 120px;
+    }
+    
+    .gauge-wrapper {
+        width: 600px;
+        height: 350px;
+    }
+    
+    .metrics-container {
+        top: 500px;
+    }
+    
+    .arr-main-value {
+        font-size: 3rem;
+    }
+    
+    .arr-label {
+        font-size: 1.8rem;
+    }
+    
+    .arr-metrics {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .arr-metric-label {
+        font-size: 1.2rem;
+    }
+    
+    .arr-metric-value {
+        font-size: 1.8rem;
+    }
+}
+

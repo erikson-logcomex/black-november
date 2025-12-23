@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Destaques - Black November</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Black November">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <link rel="stylesheet" href="/static/css/hall_da_fama.css">
+    <link rel="stylesheet" href="/static/css/destaques.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration.css">
+</head>
+<body>
+    <img src="/static/img/confidencial.png" alt="Confidencial" class="confidencial-logo">
+    
+    <!-- Componente Universal de Celebração -->
+    {% include 'includes/celebration_component.html' %}
+    
+    <!-- Container Principal -->
+    <div class="container hall-container">
+        <img src="/static/img/blck_november.png" alt="Black November Logcomex" class="black-november-logo">
+        <img src="/static/img/%23facanacaveira.png" alt="Faca na Caveira" class="skull-sword-image">
+        <img src="/static/img/faixa_laranja.png" alt="Faixa Laranja" class="orange-band-image">
+        <img src="/static/img/feixa_roxa.png" alt="Faixa Roxa" class="purple-band-image">
+        <img src="/static/img/paty_rifiski.png" alt="Paty Rifiski" class="paty-rifiski-image">
+        
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Carregando destaques...</div>
+        </div>
+        
+        <!-- Slides dos Destaques -->
+        <div class="hall-slides" id="destaquesSlides" style="display: none;">
+            
+            <!-- Slide 1: Destaques da Semana - NEW -->
+            <div class="hall-slide active" id="slideSemanaNew">
+                <div class="hall-header">
+                    <h1 class="hall-title">⭐ DESTAQUES DA SEMANA - NEW</h1>
+                    <p class="hall-subtitle" id="subtitleSemanaNew">Carregando...</p>
+                </div>
+                
+                <div class="destaques-grid">
+                    <!-- MVP EV -->
+                    <div class="mvp-card destaques-card" id="mvpEvSemanaNew">
+                        <div class="mvp-badge">EV</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpEvSemanaNewPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpEvSemanaNewName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvSemanaNewDeals">0</span>
+                                <span class="mvp-stat-label">Deals</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvSemanaNewRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP SDR NEW -->
+                    <div class="mvp-card destaques-card" id="mvpSdrSemanaNew">
+                        <div class="mvp-badge">SDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpSdrSemanaNewPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpSdrSemanaNewName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpSdrSemanaNewScheduled">0</span>
+                                <span class="mvp-stat-label">Agendamentos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP LDR -->
+                    <div class="mvp-card destaques-card" id="mvpLdrSemanaNew">
+                        <div class="mvp-badge">LDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpLdrSemanaNewPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpLdrSemanaNewName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrSemanaNewDeals">0</span>
+                                <span class="mvp-stat-label">Deals Ganhos</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrSemanaNewRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Slide 2: Destaques da Semana - Expansão -->
+            <div class="hall-slide" id="slideSemanaExpansao">
+                <div class="hall-header">
+                    <h1 class="hall-title">⭐ DESTAQUES DA SEMANA - EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleSemanaExpansao">Carregando...</p>
+                </div>
+                
+                <div class="destaques-grid">
+                    <!-- MVP EV -->
+                    <div class="mvp-card destaques-card" id="mvpEvSemanaExpansao">
+                        <div class="mvp-badge">EV</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpEvSemanaExpansaoPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpEvSemanaExpansaoName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvSemanaExpansaoDeals">0</span>
+                                <span class="mvp-stat-label">Deals</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvSemanaExpansaoRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP SDR Expansão -->
+                    <div class="mvp-card destaques-card" id="mvpSdrSemanaExpansao">
+                        <div class="mvp-badge">SDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpSdrSemanaExpansaoPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpSdrSemanaExpansaoName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpSdrSemanaExpansaoScheduled">0</span>
+                                <span class="mvp-stat-label">Agendamentos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP LDR -->
+                    <div class="mvp-card destaques-card" id="mvpLdrSemanaExpansao">
+                        <div class="mvp-badge">LDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpLdrSemanaExpansaoPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpLdrSemanaExpansaoName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrSemanaExpansaoDeals">0</span>
+                                <span class="mvp-stat-label">Deals Ganhos</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrSemanaExpansaoRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Slide 3: Destaques do Mês - NEW -->
+            <div class="hall-slide" id="slideMesNew">
+                <div class="hall-header">
+                    <h1 class="hall-title">⭐ DESTAQUES DO MÊS - NEW</h1>
+                    <p class="hall-subtitle" id="subtitleMesNew">Carregando...</p>
+                </div>
+                
+                <div class="destaques-grid">
+                    <!-- MVP EV -->
+                    <div class="mvp-card destaques-card" id="mvpEvMesNew">
+                        <div class="mvp-badge">EV</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpEvMesNewPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpEvMesNewName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvMesNewDeals">0</span>
+                                <span class="mvp-stat-label">Deals</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvMesNewRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP SDR NEW -->
+                    <div class="mvp-card destaques-card" id="mvpSdrMesNew">
+                        <div class="mvp-badge">SDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpSdrMesNewPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpSdrMesNewName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpSdrMesNewScheduled">0</span>
+                                <span class="mvp-stat-label">Agendamentos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP LDR -->
+                    <div class="mvp-card destaques-card" id="mvpLdrMesNew">
+                        <div class="mvp-badge">LDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpLdrMesNewPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpLdrMesNewName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrMesNewDeals">0</span>
+                                <span class="mvp-stat-label">Deals Ganhos</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrMesNewRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Slide 4: Destaques do Mês - Expansão -->
+            <div class="hall-slide" id="slideMesExpansao">
+                <div class="hall-header">
+                    <h1 class="hall-title">⭐ DESTAQUES DO MÊS - EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleMesExpansao">Carregando...</p>
+                </div>
+                
+                <div class="destaques-grid">
+                    <!-- MVP EV -->
+                    <div class="mvp-card destaques-card" id="mvpEvMesExpansao">
+                        <div class="mvp-badge">EV</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpEvMesExpansaoPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpEvMesExpansaoName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvMesExpansaoDeals">0</span>
+                                <span class="mvp-stat-label">Deals</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpEvMesExpansaoRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP SDR Expansão -->
+                    <div class="mvp-card destaques-card" id="mvpSdrMesExpansao">
+                        <div class="mvp-badge">SDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpSdrMesExpansaoPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpSdrMesExpansaoName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpSdrMesExpansaoScheduled">0</span>
+                                <span class="mvp-stat-label">Agendamentos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- MVP LDR -->
+                    <div class="mvp-card destaques-card" id="mvpLdrMesExpansao">
+                        <div class="mvp-badge">LDR</div>
+                        <div class="mvp-photo-wrapper">
+                            <img class="mvp-photo" id="mvpLdrMesExpansaoPhoto" src="/static/img/team/desativado.png" alt="MVP">
+                            <img class="mvp-crown" src="/static/img/coroa.png" alt="Coroa MVP">
+                        </div>
+                        <h2 class="mvp-name" id="mvpLdrMesExpansaoName">Carregando...</h2>
+                        <div class="mvp-stats">
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrMesExpansaoDeals">0</span>
+                                <span class="mvp-stat-label">Deals Ganhos</span>
+                            </div>
+                            <div class="mvp-stat">
+                                <span class="mvp-stat-value" id="mvpLdrMesExpansaoRevenue">R$ 0</span>
+                                <span class="mvp-stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Indicadores de Navegação -->
+        <div class="slide-indicators" id="slideIndicators" style="display: none;">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+        </div>
+    </div>
+
+    <script src="/static/javascript/destaques.js"></script>
+    <script src="/static/javascript/deal_celebration.js"></script>
+    
+    <!-- Sistema de Rotação Automática -->
+    <!-- O timer é iniciado após os dados serem carregados (em destaques.js) -->
+
+    <!-- Twemoji para emojis consistentes -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof twemoji !== 'undefined') {
+                twemoji.parse(document.body, {
+                    base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

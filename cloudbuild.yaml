@@ -1,0 +1,60 @@
+# Cloud Build configuration for Cloud Run deployment
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/black-november-funnel', '.']
+  
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/black-november-funnel']
+  
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'black-november-funnel'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/black-november-funnel'
+      - '--region'
+      - 'southamerica-east1'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+      - '--vpc-connector'
+      - 'vpc-meetrox-webhook'
+      - '--vpc-egress'
+      - 'private-ranges-only'
+      - '--set-env-vars'
+      - 'PG_HOST=172.23.64.3'
+      - '--set-env-vars'
+      - 'PG_PORT=5432'
+      - '--set-env-vars'
+      - 'PG_DATABASE_HUBSPOT=hubspot-sync'
+      - '--set-env-vars'
+      - 'PG_USER=meetrox_user'
+      - '--set-env-vars'
+      - 'EVOLUTION_API_URL=https://evolution-api-logcomex.34-49-195-55.nip.io'
+      - '--set-env-vars'
+      - 'EVOLUTION_INSTANCE_NAME=RevOps_AI'
+      - '--set-env-vars'
+      - 'ID_GRUPO_REVOPS=554191877530-1510578382@g.us'
+      - '--set-env-vars'
+      - 'GOOGLE_CLIENT_ID=998985848998-7ef0br3d2je3qit5cn6vg6qres5rqsiq.apps.googleusercontent.com'
+      - '--set-env-vars'
+      - 'GOOGLE_REDIRECT_URI=https://black-november-funnel-998985848998.southamerica-east1.run.app/auth/google/callback'
+      - '--set-env-vars'
+      - 'GCS_BUCKET_NAME=logcortex-assets'
+      - '--set-secrets'
+      - 'PG_PASSWORD=PG_PASSWORD:latest,EVOLUTION_API_KEY=EVOLUTION_API_KEY:latest,HUBSPOT_PRIVATE_APP_TOKEN=HUBSPOT_PRIVATE_APP_TOKEN:latest,GOOGLE_CLIENT_SECRET=GOOGLE_CLIENT_SECRET:latest,SECRET_KEY=SECRET_KEY:latest,CLOUD_SQL_CA_CERT=cloud-sql-ca-cert:latest,LOOKER_USERNAME=LOOKER_USERNAME:latest,LOOKER_PASSWORD=LOOKER_PASSWORD:latest'
+      - '--timeout'
+      - '180'
+
+# Store images in Container Registry
+images:
+  - 'gcr.io/$PROJECT_ID/black-november-funnel'
+
+# Build timeout
+timeout: '1200s'
+

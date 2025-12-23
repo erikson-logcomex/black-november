@@ -1,0 +1,33 @@
+/* Estilos específicos para a página de Natal */
+
+/* Título da Meta de Dezembro */
+.meta-title-natal {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+    color: #FFD700;
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 215, 0, 0.4),
+        3px 3px 8px rgba(0,0,0,0.7);
+    white-space: nowrap;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+    text-align: center;
+    width: fit-content;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* Valor da meta movido mais para baixo */
+.funnel-main-value-natal {
+    top: 180px !important; /* Era 80px, agora 180px (100px mais baixo) */
+}
+

@@ -1,0 +1,244 @@
+/* ==================== TEMAS DE CELEBRAÇÃO DE DEALS ==================== */
+
+/* Tema padrão: Black November (já existente, mantido como base) */
+.deal-celebration.theme-black-november {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(255, 215, 0, 0.3);
+}
+
+.deal-celebration.theme-black-november .deal-celebration-title {
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.deal-celebration.theme-black-november .deal-celebration-amount {
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.deal-celebration.theme-black-november .deal-celebration-deal-name {
+    color: #6613D0;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.deal-celebration.theme-black-november .deal-celebration-company {
+    color: #6613D0;
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.deal-celebration.theme-black-november .deal-celebration-role-badge {
+    background: linear-gradient(135deg, #6613D0 0%, #7B1FE0 100%);
+    border: 3px solid white;
+}
+
+.deal-celebration.theme-black-november .deal-celebration-name {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.deal-celebration.theme-black-november .deal-celebration-photo {
+    border: 5px solid white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.deal-celebration.theme-black-november .deal-celebration-photo:not(img) {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    border: 5px solid white;
+}
+
+/* ==================== TEMA NATAL ==================== */
+.deal-celebration.theme-natal {
+    background: linear-gradient(135deg, #1a5f1a 0%, #0d4d0d 50%, #1a5f1a 100%);
+    border: 4px solid rgba(255, 215, 0, 0.9);
+    box-shadow: 
+        0 10px 50px rgba(0, 0, 0, 0.5), 
+        0 0 100px rgba(255, 215, 0, 0.4),
+        inset 0 0 30px rgba(255, 215, 0, 0.2);
+    /* Mantém position: fixed do .deal-celebration base para centralização */
+    /* Não sobrescreve position, transform, top, left - mantém centralização */
+    overflow: visible;
+    position: fixed !important; /* Garante que mantém o posicionamento fixo */
+}
+
+/* Luzes de Natal no topo - duas imagens lado a lado */
+.deal-celebration.theme-natal .deal-celebration-lights {
+    position: absolute;
+    top: -20px; /* Movido para baixo, mais próximo do card (era -60px) */
+    width: 50%; /* Metade do tamanho original */
+    max-width: 300px; /* Metade do max-width original (600px / 2) */
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Primeira imagem de luzes (à esquerda) */
+.deal-celebration.theme-natal .deal-celebration-lights:first-of-type {
+    left: calc(50% - 150px); /* Posiciona à esquerda do centro (metade da largura da imagem) */
+    transform: translateX(-50%);
+}
+
+/* Segunda imagem de luzes (à direita) */
+.deal-celebration.theme-natal .deal-celebration-lights:last-of-type {
+    left: calc(50% + 150px); /* Posiciona à direita do centro (metade da largura da imagem) */
+    transform: translateX(-50%);
+}
+
+/* Efeito de neve no fundo (opcional, sutil) */
+.deal-celebration.theme-natal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px, 80px 80px, 60px 60px;
+    background-position: 0 0, 20px 20px, 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 20px;
+    /* Não interfere com o posicionamento do elemento pai */
+}
+
+.deal-celebration.theme-natal > * {
+    position: relative;
+    z-index: 1;
+}
+
+.deal-celebration.theme-natal .deal-celebration-title {
+    color: #FFD700;
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.6),
+        3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: titlePulse 2s ease-in-out infinite, titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 20px rgba(255, 215, 0, 0.8),
+            0 0 40px rgba(255, 215, 0, 0.6),
+            3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        text-shadow: 
+            0 0 30px rgba(255, 215, 0, 1),
+            0 0 60px rgba(255, 215, 0, 0.8),
+            3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.deal-celebration.theme-natal .deal-celebration-amount {
+    color: #FFD700;
+    text-shadow: 
+        0 0 25px rgba(255, 215, 0, 0.9),
+        0 0 50px rgba(255, 215, 0, 0.7),
+        3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: amountPulse 1.5s ease-in-out infinite, amountGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes amountGlow {
+    0%, 100% {
+        text-shadow: 
+            0 0 25px rgba(255, 215, 0, 0.9),
+            0 0 50px rgba(255, 215, 0, 0.7),
+            3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        text-shadow: 
+            0 0 35px rgba(255, 215, 0, 1),
+            0 0 70px rgba(255, 215, 0, 0.9),
+            3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.deal-celebration.theme-natal .deal-celebration-deal-name {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.15);
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.deal-celebration.theme-natal .deal-celebration-company {
+    color: #FFD700;
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.deal-celebration.theme-natal .deal-celebration-role-badge {
+    background: linear-gradient(135deg, #c41e3a 0%, #dc143c 100%);
+    border: 3px solid #FFD700;
+    box-shadow: 
+        0 3px 10px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.deal-celebration.theme-natal .deal-celebration-name {
+    color: #FFD700;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.deal-celebration.theme-natal .deal-celebration-photo {
+    border: 5px solid #FFD700;
+    box-shadow: 
+        0 5px 20px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(255, 215, 0, 0.4);
+}
+
+.deal-celebration.theme-natal .deal-celebration-photo:not(img) {
+    background: linear-gradient(135deg, #c41e3a 0%, #dc143c 100%);
+    border: 5px solid #FFD700;
+}
+
+/* Touca de Natal sobreposta nas fotos */
+.deal-celebration.theme-natal .deal-celebration-photo-container::after {
+    content: '';
+    position: absolute;
+    top: -50px; /* Movido mais para cima (era -40px) */
+    left: 50%;
+    transform: translateX(-40%); /* Movido para a direita (era -50%, agora -40%) */
+    width: 120px; /* Ajuste o tamanho conforme necessário */
+    height: 100px; /* Ajuste o tamanho conforme necessário */
+    background-image: url('/static/img/touca_natal.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    z-index: 5; /* Acima da foto, mas abaixo do badge se necessário */
+    pointer-events: none;
+}
+
+/* Garante que a logo fique no lugar correto no tema natal */
+.deal-celebration.theme-natal .deal-celebration-logo {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 150px;
+    height: auto;
+    opacity: 1;
+    z-index: 10; /* Garante que fique acima do efeito de neve */
+}
+
+/* Responsividade para tema natal */
+@media (max-width: 768px) {
+    .deal-celebration.theme-natal {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .deal-celebration.theme-natal {
+        padding: 25px 15px;
+    }
+}
+
