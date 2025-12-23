@@ -25,35 +25,41 @@ Sistema composto por:
 
 ## 🚀 Instalação Local
 
-### 1. Clone e configure o ambiente:
+### 1. Clone o repositório:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/erikson-logcomex/black-november.git
 cd black-november
-
-# Crie o arquivo .env com as variáveis necessárias
-cp .env.example .env
 ```
 
-### 2. Configure o `.env`:
+### 2. Configure as variáveis de ambiente:
 
 ```bash
-# PostgreSQL
-PG_HOST=seu_host
-PG_PORT=5432
-PG_DATABASE_HUBSPOT=hubspot-sync
-PG_USER=seu_usuario
-PG_PASSWORD=sua_senha
+# Copie o arquivo de exemplo
+cp .env.example .env
 
-# Evolution API (WhatsApp)
-EVOLUTION_API_URL=https://evolution-api-logcomex.34-49-195-55.nip.io
-EVOLUTION_API_KEY=sua_api_key
-EVOLUTION_INSTANCE_NAME=RevOps
-ID_GRUPO_REVOPS=120363392188349999@g.us
-
-# Aplicação
-PORT=5000
+# Edite o arquivo .env e preencha com suas credenciais
+# O arquivo .env.example contém todas as variáveis necessárias com explicações
 ```
+
+**Arquivo `.env.example` contém todas as variáveis necessárias organizadas por categoria:**
+
+- **Aplicação**: `PORT`, `SECRET_KEY`, `API_BASE_URL`
+- **PostgreSQL**: `PG_HOST`, `PG_PORT`, `PG_DATABASE_HUBSPOT`, `PG_USER`, `PG_PASSWORD`
+- **HubSpot API**: `HUBSPOT_PRIVATE_APP_TOKEN`, `HUBSPOT_WEBHOOK_SECRET`
+- **Looker**: `LOOKER_USERNAME`, `LOOKER_PASSWORD`, `GCS_BUCKET_NAME` (opcional)
+- **Evolution API (WhatsApp)**: `EVOLUTION_API_URL`, `EVOLUTION_API_KEY`, `EVOLUTION_INSTANCE_NAME`, `ID_GRUPO_REVOPS`
+- **Google OAuth**: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI`
+
+**⚠️ IMPORTANTE - Configuração do Looker:**
+
+Após configurar `LOOKER_USERNAME` e `LOOKER_PASSWORD` no `.env`, execute:
+
+```bash
+python setup_looker_session.py
+```
+
+Este script abrirá um navegador para você fazer login manualmente no Looker (incluindo 2FA). **Marque o checkbox "Confiar neste navegador"** para evitar precisar fazer 2FA em todas as requisições. Os cookies serão salvos automaticamente.
 
 ### 3. Instale as dependências:
 
