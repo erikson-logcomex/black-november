@@ -98,7 +98,7 @@ def get_celebration_theme():
                 config = json.load(f)
                 theme = config.get('theme', 'black-november')
                 # Valida o tema
-                valid_themes = ['black-november', 'natal']
+                valid_themes = ['black-november', 'natal', 'padrao']
                 if theme in valid_themes:
                     return theme
     except Exception as e:

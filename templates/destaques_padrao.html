@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Destaques - Logcomex</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Logcomex">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="/static/css/hall_da_fama.css">
+    <link rel="stylesheet" href="/static/css/destaques.css">
+    <link rel="stylesheet" href="/static/css/background-padrao.css">
+    <link rel="stylesheet" href="/static/css/buttons-padrao.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration_themes.css">
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <filter id="chromakey" x="0" y="0" width="100%" height="100%">
+                <!-- Remove fundo verde/azul (chroma key) -->
+                <feColorMatrix type="matrix" 
+                    values="1 0 0 0 0
+                            0 1.5 0 0 0
+                            0 0 1 0 0
+                            0 0 0 1 0"/>
+                <feComponentTransfer>
+                    <feFuncA type="discrete" tableValues="0 1"/>
+                </feComponentTransfer>
+            </filter>
+        </defs>
+    </svg>
+</head>
+<body>
+    <a href="/" class="home-button" title="Voltar para página inicial">
+        <i class="fas fa-home"></i>
+    </a>
+    <img src="/static/img/confidencial.png" alt="Confidencial" class="confidencial-logo">
+    
+    <!-- Componente Universal de Celebração -->
+    {% include 'includes/celebration_component.html' %}
+    
+    <!-- Container Principal -->
+    <div class="container hall-container">
+        <img src="/static/img/paty_rifiski.png" alt="Paty Rifiski" class="paty-rifiski-image" id="patyRifiskiImage" style="display: none;">
+        <video id="patyRifiskiVideo" class="paty-rifiski-video" autoplay muted playsinline style="display: none;">
+            <source src="/static/img/paty_rifiski.mp4" type="video/mp4">
+        </video>
+        <canvas id="patyRifiskiVideoCanvas" class="paty-rifiski-video-canvas" style="display: none;"></canvas>
+        <img id="trophyImage" src="" alt="Troféu" class="trophy-image" style="display: none;">
+        <video id="trophyVideo" class="trophy-video" autoplay muted playsinline style="display: none;">
+            <!-- Vídeo será carregado dinamicamente via JavaScript (sem loop, roda uma vez) -->
+        </video>
+        <canvas id="trophyVideoCanvas" class="trophy-video-canvas" style="display: none;"></canvas>
+        
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Carregando destaques...</div>
+        </div>
+        
+        <!-- Slides dos Destaques - Pódio -->
+        <div class="hall-slides" id="destaquesSlides" style="display: none;">
+            
+            <!-- Slide 1: EV - NEW (Semana) -->
+            <div class="hall-slide active" id="slideEvNew">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleEvNew">🏆 PÓDIO DA SEMANA - EV NEW</h1>
+                    <p class="hall-subtitle" id="subtitleEvNew">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioEvNew"></div>
+            </div>
+            
+            <!-- Slide 2: EV - Expansão (Semana) -->
+            <div class="hall-slide" id="slideEvExpansao">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleEvExpansao">🏆 PÓDIO DA SEMANA - EV EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleEvExpansao">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioEvExpansao"></div>
+            </div>
+            
+            <!-- Slide 3: SDR - NEW (Semana) -->
+            <div class="hall-slide" id="slideSdrNew">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleSdrNew">🏆 PÓDIO DA SEMANA - SDR NEW</h1>
+                    <p class="hall-subtitle" id="subtitleSdrNew">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioSdrNew"></div>
+            </div>
+            
+            <!-- Slide 4: SDR - Expansão (Semana) -->
+            <div class="hall-slide" id="slideSdrExpansao">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleSdrExpansao">🏆 PÓDIO DA SEMANA - SDR EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleSdrExpansao">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioSdrExpansao"></div>
+            </div>
+            
+            <!-- Slide 5: LDR - NEW (Semana) -->
+            <div class="hall-slide" id="slideLdrNew">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleLdrNew">🏆 PÓDIO DA SEMANA - LDR NEW</h1>
+                    <p class="hall-subtitle" id="subtitleLdrNew">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioLdrNew"></div>
+            </div>
+            
+            <!-- Slide 6: LDR - Expansão (Semana) -->
+            <div class="hall-slide" id="slideLdrExpansao">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleLdrExpansao">🏆 PÓDIO DA SEMANA - LDR EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleLdrExpansao">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioLdrExpansao"></div>
+            </div>
+            
+            <!-- Slide 7: EV - NEW (Mês) -->
+            <div class="hall-slide" id="slideEvNewMes">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleEvNewMes">🏆 PÓDIO DO MÊS - EV NEW</h1>
+                    <p class="hall-subtitle" id="subtitleEvNewMes">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioEvNewMes"></div>
+            </div>
+            
+            <!-- Slide 8: EV - Expansão (Mês) -->
+            <div class="hall-slide" id="slideEvExpansaoMes">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleEvExpansaoMes">🏆 PÓDIO DO MÊS - EV EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleEvExpansaoMes">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioEvExpansaoMes"></div>
+            </div>
+            
+            <!-- Slide 9: SDR - NEW (Mês) -->
+            <div class="hall-slide" id="slideSdrNewMes">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleSdrNewMes">🏆 PÓDIO DO MÊS - SDR NEW</h1>
+                    <p class="hall-subtitle" id="subtitleSdrNewMes">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioSdrNewMes"></div>
+            </div>
+            
+            <!-- Slide 10: SDR - Expansão (Mês) -->
+            <div class="hall-slide" id="slideSdrExpansaoMes">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleSdrExpansaoMes">🏆 PÓDIO DO MÊS - SDR EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleSdrExpansaoMes">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioSdrExpansaoMes"></div>
+            </div>
+            
+            <!-- Slide 11: LDR - NEW (Mês) -->
+            <div class="hall-slide" id="slideLdrNewMes">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleLdrNewMes">🏆 PÓDIO DO MÊS - LDR NEW</h1>
+                    <p class="hall-subtitle" id="subtitleLdrNewMes">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioLdrNewMes"></div>
+            </div>
+            
+            <!-- Slide 12: LDR - Expansão (Mês) -->
+            <div class="hall-slide" id="slideLdrExpansaoMes">
+                <div class="hall-header">
+                    <h1 class="hall-title" id="titleLdrExpansaoMes">🏆 PÓDIO DO MÊS - LDR EXPANSÃO</h1>
+                    <p class="hall-subtitle" id="subtitleLdrExpansaoMes">Carregando...</p>
+                </div>
+                <div class="podio-container" id="podioLdrExpansaoMes"></div>
+            </div>
+            
+        </div>
+        
+        <!-- Indicadores de Navegação -->
+        <div class="slide-indicators" id="slideIndicators" style="display: none;">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
+            <span class="indicator" data-slide="5"></span>
+            <span class="indicator" data-slide="6"></span>
+            <span class="indicator" data-slide="7"></span>
+            <span class="indicator" data-slide="8"></span>
+            <span class="indicator" data-slide="9"></span>
+            <span class="indicator" data-slide="10"></span>
+            <span class="indicator" data-slide="11"></span>
+        </div>
+    </div>
+
+    <script src="/static/javascript/destaques.js"></script>
+    <script src="/static/javascript/celebration_theme_manager.js"></script>
+    <script src="/static/javascript/deal_celebration.js"></script>
+    
+    <!-- Sistema de Rotação Automática -->
+    <!-- O timer é iniciado após os dados serem carregados (em destaques.js) -->
+
+    <!-- Twemoji para emojis consistentes -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof twemoji !== 'undefined') {
+                twemoji.parse(document.body, {
+                    base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

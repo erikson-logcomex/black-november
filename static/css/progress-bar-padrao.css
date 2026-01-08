@@ -1,0 +1,207 @@
+/* Barra de Progresso Padrão - Design Limpo e Profissional */
+
+/* Título da Meta Dinâmico */
+.meta-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+    color: #FE8F1C;
+    text-shadow: 
+        0 0 20px rgba(254, 143, 28, 0.6),
+        0 0 40px rgba(254, 143, 28, 0.4),
+        3px 3px 8px rgba(0,0,0,0.7);
+    white-space: nowrap;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+    text-align: center;
+    width: fit-content;
+    padding: 0;
+    box-sizing: border-box;
+    display: block;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Valor da meta posicionado abaixo do título */
+.funnel-main-value {
+    top: 180px !important; /* Mesma posição da página de Natal */
+}
+
+.progress-container {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 200;
+    width: 80%;
+    max-width: 800px;
+    padding: 40px;
+    background: linear-gradient(135deg, 
+        rgba(254, 143, 28, 0.9) 0%,
+        rgba(254, 143, 28, 0.9) 50%,
+        rgba(254, 143, 28, 0.9) 100%);
+    border-radius: 25px;
+    border: 4px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 0 50px rgba(254, 143, 28, 0.8),
+        0 0 100px rgba(254, 143, 28, 0.4),
+        inset 0 0 30px rgba(255, 255, 255, 0.3),
+        0 0 0 2px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    overflow: visible;
+}
+
+.progress-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.progress-percentage {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    color: #ffffff;
+}
+
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        inset 0 3px 15px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(254, 143, 28, 0.5),
+        0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.progress-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #6613D0, #8b2ae8);
+    border-radius: 30px;
+    transition: width 1s ease-out;
+    box-shadow: 
+        0 0 30px rgba(102, 19, 208, 0.8),
+        inset 0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 60px rgba(102, 19, 208, 0.5);
+    overflow: hidden;
+}
+
+/* Estados da barra baseado no progresso - mantém roxo com variações de intensidade */
+.progress-bar-fill.low {
+    background: linear-gradient(90deg, #6613D0, #8b2ae8);
+    box-shadow: 
+        0 0 25px rgba(102, 19, 208, 0.6),
+        inset 0 0 15px rgba(255, 255, 255, 0.2),
+        0 0 40px rgba(102, 19, 208, 0.4);
+}
+
+.progress-bar-fill.medium {
+    background: linear-gradient(90deg, #6613D0, #8b2ae8);
+    box-shadow: 
+        0 0 35px rgba(102, 19, 208, 0.8),
+        inset 0 0 25px rgba(255, 255, 255, 0.3),
+        0 0 50px rgba(102, 19, 208, 0.6);
+}
+
+.progress-bar-fill.high {
+    background: linear-gradient(90deg, #6613D0, #8b2ae8);
+    box-shadow: 
+        0 0 40px rgba(102, 19, 208, 1),
+        inset 0 0 30px rgba(255, 255, 255, 0.4),
+        0 0 70px rgba(102, 19, 208, 0.8);
+}
+
+.progress-bar-fill.complete {
+    background: linear-gradient(90deg, #6613D0, #8b2ae8);
+    animation: completePulse 1.5s infinite;
+    box-shadow: 
+        0 0 50px rgba(102, 19, 208, 1),
+        inset 0 0 40px rgba(255, 255, 255, 0.5),
+        0 0 100px rgba(102, 19, 208, 0.8),
+        0 0 150px rgba(102, 19, 208, 0.6);
+}
+
+/* Animações */
+@keyframes completePulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 30px rgba(102, 19, 208, 0.8),
+            inset 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 
+            0 0 50px rgba(102, 19, 208, 1),
+            inset 0 0 40px rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* Ajustes para telas menores */
+@media screen and (max-width: 768px) {
+    .progress-container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .progress-label {
+        font-size: 1.4rem;
+    }
+    
+    .progress-percentage {
+        font-size: 1.2rem;
+    }
+    
+    .progress-bar {
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .progress-container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .progress-label {
+        font-size: 1.2rem;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .progress-bar {
+        height: 35px;
+    }
+}

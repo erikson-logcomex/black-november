@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painéis - {{ theme_name }}</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4a0d7a 0%, #6613D0 50%, #8b2ae8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateX(-5px);
+        }
+        
+        .theme-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .theme-icon-large {
+            font-size: 4rem;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        
+        .panels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .panel-card {
+            background: rgba(254, 143, 28, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(254, 143, 28, 0.5);
+            border-radius: 20px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+        
+        .panel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(254, 143, 28, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .panel-card:hover::before {
+            left: 100%;
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-10px);
+            border-color: #FE8F1C;
+            box-shadow: 0 10px 30px rgba(254, 143, 28, 0.5);
+            background: rgba(254, 143, 28, 0.2);
+        }
+        
+        .panel-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .panel-title {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .panel-description {
+            color: #b8b8b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .panels-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .panel-card {
+                padding: 30px 20px;
+            }
+            
+            .back-button {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-button">← Voltar</a>
+    
+    <div class="container">
+        <div class="header">
+            <div class="theme-header">
+                <span class="theme-icon-large">{{ theme_icon }}</span>
+                <h1>{{ theme_name }}</h1>
+            </div>
+            <p class="subtitle">Escolha o painel que deseja visualizar</p>
+        </div>
+        
+        <div class="panels-grid" id="panelsGrid">
+            <!-- Os painéis serão carregados dinamicamente via JavaScript -->
+            <div style="color: #fff; padding: 20px;">Carregando painéis...</div>
+        </div>
+    </div>
+
+    <script>
+        // Dados do tema passados pelo servidor via Jinja2
+        const themeData = {{ theme_data|tojson|safe }};
+        
+        // Carrega painéis do tema
+        function loadPanels() {
+            const panelsGrid = document.getElementById('panelsGrid');
+            panelsGrid.innerHTML = '';
+            
+            if (!themeData || !themeData.panels) {
+                panelsGrid.innerHTML = '<div style="color: #fff; padding: 20px;">Nenhum painel disponível para este tema.</div>';
+                return;
+            }
+            
+            const panels = Object.entries(themeData.panels);
+            
+            if (panels.length === 0) {
+                panelsGrid.innerHTML = '<div style="color: #fff; padding: 20px;">Nenhum painel disponível para este tema.</div>';
+                return;
+            }
+            
+            panels.forEach(([panelId, panel], index) => {
+                const card = document.createElement('a');
+                card.href = panel.route;
+                card.className = 'panel-card';
+                card.style.animationDelay = `${0.1 * (index + 1)}s`;
+                
+                card.innerHTML = `
+                    <span class="panel-icon">${panel.icon || '📊'}</span>
+                    <div class="panel-title">${panel.name}</div>
+                    <div class="panel-description">${panel.description || ''}</div>
+                `;
+                
+                panelsGrid.appendChild(card);
+            });
+        }
+        
+        // Carrega painéis ao carregar a página
+        loadPanels();
+    </script>
+</body>
+</html>

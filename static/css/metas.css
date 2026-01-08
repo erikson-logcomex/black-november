@@ -154,11 +154,8 @@ body {
 .meta-value-display {
     font-size: 4rem;
     font-weight: bold;
-    background: linear-gradient(135deg, #FE8F1C, #7B2FDD);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 30px rgba(254, 143, 28, 0.3);
+    color: #FE8F1C;
+    text-shadow: 0 0 30px rgba(254, 143, 28, 0.8), 0 0 60px rgba(254, 143, 28, 0.4);
 }
 
 /* Seção de Progresso */
@@ -187,31 +184,10 @@ body {
     top: 0;
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #7B2FDD, #FE8F1C);
+    background: #FE8F1C; /* Cor laranja sólida sempre */
     border-radius: 50px;
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 0 30px rgba(254, 143, 28, 0.5);
-}
-
-/* Cores dinâmicas da barra de progresso */
-.progress-bar-fill.critical {
-    background: linear-gradient(90deg, #FF4444, #FF6B6B);
-    box-shadow: 0 0 30px rgba(255, 68, 68, 0.5);
-}
-
-.progress-bar-fill.attention {
-    background: linear-gradient(90deg, #FFA500, #FE8F1C);
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.5);
-}
-
-.progress-bar-fill.close {
-    background: linear-gradient(90deg, #4CAF50, #45B649);
-    box-shadow: 0 0 30px rgba(76, 175, 80, 0.5);
-}
-
-.progress-bar-fill.complete {
-    background: linear-gradient(90deg, #2196F3, #1976D2);
-    box-shadow: 0 0 30px rgba(33, 150, 243, 0.5);
 }
 
 .progress-percentage {
@@ -245,7 +221,7 @@ body {
 .progress-info .label {
     display: block;
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
     margin-bottom: 6px;
 }
 
@@ -259,7 +235,7 @@ body {
 .progress-pipeline .deals-count {
     display: block;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
     margin-top: 3px;
 }
 
@@ -303,7 +279,7 @@ body {
 
 .countdown-text {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
     margin-bottom: 8px;
     text-transform: uppercase;
 }
@@ -312,10 +288,8 @@ body {
     font-size: 2.8rem;
     font-weight: bold;
     font-family: 'Courier New', monospace;
-    background: linear-gradient(135deg, #7B2FDD, #FE8F1C);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #FE8F1C;
+    text-shadow: 0 0 20px rgba(254, 143, 28, 0.8), 0 0 40px rgba(254, 143, 28, 0.4);
     letter-spacing: 3px;
 }
 
@@ -352,7 +326,7 @@ body {
 
 .rhythm-mini-card .rhythm-label {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
     margin-bottom: 6px;
     text-transform: uppercase;
 }
@@ -383,7 +357,7 @@ body {
 
 .status-label {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -495,14 +469,15 @@ body {
 
 .stat-label {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
     margin-bottom: 6px;
 }
 
 .stat-value {
     font-size: 1.7rem;
     font-weight: bold;
-    color: #7B2FDD;
+    color: #FE8F1C;
+    text-shadow: 0 0 10px rgba(254, 143, 28, 0.6);
 }
 
 /* Responsividade */

@@ -1,0 +1,50 @@
+{
+  "database": {
+    "total_revenue": 38849.36,
+    "tier_1": 0.0,
+    "tier_2": 0.0,
+    "tier_3": 0.0,
+    "tier_4": 0.0,
+    "total_deals": 56,
+    "source": "database"
+  },
+  "hubspot": {
+    "total_revenue": 40503.61,
+    "tier_1": 0.0,
+    "tier_2": 0.0,
+    "tier_3": 0.0,
+    "tier_4": 0.0,
+    "total_deals": 57,
+    "deals_by_stage": {
+      "Faturamento": {
+        "count": 42,
+        "revenue": 15800.329999999996
+      },
+      "Ganho": {
+        "count": 15,
+        "revenue": 24703.280000000002
+      }
+    },
+    "deals_by_pipeline": {
+      "4007305": {
+        "count": 3,
+        "revenue": 9167.34
+      },
+      "7075777": {
+        "count": 49,
+        "revenue": 15386.27
+      },
+      "6810518": {
+        "count": 5,
+        "revenue": 15950.0
+      }
+    },
+    "month_start": "2026-01-01 03:00:00 UTC",
+    "month_end": "2026-02-01 02:59:59 UTC"
+  },
+  "comparison": {
+    "total_revenue_diff": 1654.25,
+    "total_deals_diff": 1,
+    "timestamp": "2026-01-08T19:20:16.569115+00:00"
+  }
+}

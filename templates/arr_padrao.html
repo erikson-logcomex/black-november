@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>ARR - Logcomex</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ARR">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="/static/css/funnel.css">
+    <link rel="stylesheet" href="/static/css/background-padrao.css">
+    <link rel="stylesheet" href="/static/css/buttons-padrao.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration_themes.css">
+    <link rel="stylesheet" href="/static/css/arr-natal.css">
+</head>
+<body>
+    <a href="/" class="home-button" title="Voltar para página inicial">
+        <i class="fas fa-home"></i>
+    </a>
+    <img src="/static/img/confidencial.png" alt="Confidencial" class="confidencial-logo">
+    
+    <!-- Título Principal -->
+    <div class="arr-title">ARR - Meta 2026</div>
+    
+    <!-- Gauge Semicircular -->
+    <div class="gauge-container" id="gaugeContainer" style="display: none;">
+        <div class="gauge-wrapper">
+            <svg class="gauge-svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYTop meet">
+                <!-- Arco de fundo (semicírculo) -->
+                <path class="gauge-background" id="gaugeBackground" 
+                      d="M 100 350 A 500 500 0 0 1 1100 350" 
+                      fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="100" stroke-linecap="round"/>
+                <!-- Arco de progresso (semicírculo) -->
+                <path class="gauge-progress" id="gaugeProgress" 
+                      d="M 100 350 A 500 500 0 0 1 1100 350" 
+                      fill="none" stroke="#FE8F1C" stroke-width="100" stroke-linecap="round"
+                      stroke-dasharray="1570.8" stroke-dashoffset="1570.8"
+                      style="transition: stroke-dashoffset 1s ease-out; filter: drop-shadow(0 0 15px rgba(254, 143, 28, 0.8));"/>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- Container de Métricas (separado do gauge) -->
+    <div class="metrics-container" id="metricsContainer" style="display: none;">
+        <div class="arr-main-value" id="arrValue">-</div>
+        <div class="arr-label">ARR Atual</div>
+        <div class="arr-metrics">
+            <div class="arr-metric-item">
+                <div class="arr-metric-label">Meta</div>
+                <div class="arr-metric-value" id="arrTarget">R$ 276.103.000</div>
+            </div>
+            <div class="arr-metric-item">
+                <div class="arr-metric-label">Progresso</div>
+                <div class="arr-metric-value" id="arrPercentage">-</div>
+            </div>
+            <div class="arr-metric-item">
+                <div class="arr-metric-label">Restante</div>
+                <div class="arr-metric-value" id="arrRemaining">-</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Carregando dados...</div>
+    </div>
+    
+    <!-- Componente Universal de Celebração -->
+    {% include 'includes/celebration_component.html' %}
+    
+    <script src="/static/javascript/celebration_theme_manager.js"></script>
+    <script src="/static/javascript/deal_celebration.js"></script>
+    <script src="/static/javascript/arr_natal.js"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/sw.js').catch(() => {});
+        }
+    </script>
+</body>
+</html>
+

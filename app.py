@@ -83,6 +83,8 @@ from routes.api.looker import looker_bp
 app.register_blueprint(looker_bp)
 from routes.api.arr import arr_bp
 app.register_blueprint(arr_bp)
+from routes.api.themes import themes_bp
+app.register_blueprint(themes_bp)
 
 print("[OK] Aplicacao Flask inicializada com estrutura modular")
 

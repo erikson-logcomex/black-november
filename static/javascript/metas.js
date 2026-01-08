@@ -1,9 +1,11 @@
 // Configurações
-const META_MENSAL = 1500000; // R$ 1.500.000
+const META_MENSAL_DEFAULT = 1500000; // R$ 1.500.000 (valor padrão)
 const HORA_INICIO_EXPEDIENTE = 9; // 09:00
 const HORA_FIM_EXPEDIENTE = 18; // 18:00
-const NOVEMBRO_2025_DIAS_UTEIS = 20; // Total de dias úteis em novembro 2025
 const UPDATE_INTERVAL = 300000; // Atualiza a cada 5 minutos
+
+// Variável global para armazenar a meta mensal (pode ser alterada pela meta manual)
+let META_MENSAL = META_MENSAL_DEFAULT;
 
 // Utilitários
 function formatCurrency(value) {
@@ -19,53 +21,143 @@ function formatTime(hours, minutes, seconds) {
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-// Calcula dias úteis restantes em novembro 2025
-function getDiasUteisRestantes() {
+// Feriados nacionais brasileiros (formato: [mês, dia])
+// Mês: 0-11 (janeiro = 0, dezembro = 11)
+const FERIADOS_NACIONAIS = [
+    [0, 1],   // 1º de Janeiro - Ano Novo
+    [2, 21],  // 21 de Março - Tiradentes (corrigido: abril é mês 3)
+    [3, 21],  // 21 de Abril - Tiradentes
+    [4, 1],   // 1º de Maio - Dia do Trabalho
+    [8, 7],   // 7 de Setembro - Independência
+    [9, 12],  // 12 de Outubro - Nossa Senhora Aparecida
+    [10, 2],  // 2 de Novembro - Finados
+    [10, 15], // 15 de Novembro - Proclamação da República
+    [10, 20], // 20 de Novembro - Dia da Consciência Negra
+    [11, 25], // 25 de Dezembro - Natal
+];
+
+// Verifica se uma data é feriado
+function isFeriado(date) {
+    const mes = date.getMonth();
+    const dia = date.getDate();
+    return FERIADOS_NACIONAIS.some(([m, d]) => m === mes && d === dia);
+}
+
+// Verifica se uma data é fim de semana
+function isWeekend(date) {
+    const diaSemana = date.getDay();
+    return diaSemana === 0 || diaSemana === 6; // 0 = domingo, 6 = sábado
+}
+
+// Verifica se uma data é dia útil
+function isDiaUtil(date) {
+    return !isWeekend(date) && !isFeriado(date);
+}
+
+// Calcula o total de dias úteis do mês atual
+function getTotalDiasUteisMes() {
     const hoje = new Date();
-    const diaAtual = hoje.getDate();
-    const mesAtual = hoje.getMonth(); // 0-11 (10 = novembro)
-    const anoAtual = hoje.getFullYear();
+    const ano = hoje.getFullYear();
+    const mes = hoje.getMonth();
     
-    // Se não estamos em novembro 2025, retorna 0
-    if (anoAtual !== 2025 || mesAtual !== 10) {
-        return 0;
-    }
+    // Primeiro dia do mês
+    const primeiroDia = new Date(ano, mes, 1);
+    // Último dia do mês
+    const ultimoDia = new Date(ano, mes + 1, 0);
     
-    // Dias úteis em novembro 2025 (considerando apenas sábados e domingos como não úteis)
-    // Novembro 2025 tem 30 dias
-    // Sábados: 1, 8, 15, 22, 29
-    // Domingos: 2, 9, 16, 23, 30
-    // Feriado: 20 (Dia da Consciência Negra)
-    const diasNaoUteis = [1, 2, 8, 9, 15, 16, 20, 22, 23, 29, 30];
-    
-    let diasUteisRestantes = 0;
-    for (let dia = diaAtual; dia <= 30; dia++) {
-        if (!diasNaoUteis.includes(dia)) {
-            diasUteisRestantes++;
+    let totalDiasUteis = 0;
+    for (let dia = primeiroDia.getDate(); dia <= ultimoDia.getDate(); dia++) {
+        const data = new Date(ano, mes, dia);
+        if (isDiaUtil(data)) {
+            totalDiasUteis++;
         }
     }
     
-    return diasUteisRestantes;
+    return totalDiasUteis;
 }
 
-// Calcula meta do dia baseada no que falta atingir
-function calcularMetaDoDia(faturadoMes) {
-    const faltaMes = META_MENSAL - faturadoMes;
+// Calcula quantos dias úteis já passaram no mês atual (NÃO inclui o dia atual)
+function getDiasUteisPassados() {
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = hoje.getMonth();
+    const diaAtual = hoje.getDate();
+    
+    let diasUteisPassados = 0;
+    // Conta apenas os dias anteriores ao dia atual (dia < diaAtual)
+    for (let dia = 1; dia < diaAtual; dia++) {
+        const data = new Date(ano, mes, dia);
+        if (isDiaUtil(data)) {
+            diasUteisPassados++;
+        }
+    }
+    
+    return diasUteisPassados;
+}
+
+// Calcula dias úteis restantes no mês atual
+function getDiasUteisRestantes() {
+    const totalDiasUteis = getTotalDiasUteisMes();
+    const diasUteisPassados = getDiasUteisPassados();
+    return Math.max(0, totalDiasUteis - diasUteisPassados);
+}
+
+// Carrega a meta manual se configurada
+async function loadManualGoal() {
+    try {
+        const response = await fetch('/api/revenue/manual-goal/config');
+        if (response.ok) {
+            const config = await response.json();
+            // O campo correto é goalValue (conforme API)
+            const goalValue = config.goalValue;
+            if (config.enabled && goalValue && goalValue > 0) {
+                META_MENSAL = goalValue;
+                console.log('✅ Meta manual carregada:', formatCurrency(goalValue));
+                return goalValue;
+            } else {
+                console.log('ℹ️ Meta manual desabilitada ou não configurada');
+            }
+        }
+    } catch (error) {
+        console.error('Erro ao carregar meta manual:', error);
+    }
+    // Se não houver meta manual, usa a meta da API ou o padrão
+    META_MENSAL = META_MENSAL_DEFAULT;
+    console.log('ℹ️ Usando meta padrão:', formatCurrency(META_MENSAL_DEFAULT));
+    return META_MENSAL_DEFAULT;
+}
+
+// Calcula meta do dia baseada no que falta atingir dividido pelos dias úteis restantes
+// Meta do dia = (Meta mensal - Faturado até ontem) / Dias úteis restantes
+// TOTALMENTE DINÂMICO: Calcula automaticamente baseado no mês e dia atual
+function calcularMetaDoDia(faturadoAteOntem, metaMensal = META_MENSAL) {
+    // Calcula o que falta para atingir a meta
+    const faltaMes = metaMensal - faturadoAteOntem;
     
     // Se já atingiu ou ultrapassou a meta, meta do dia = 0
     if (faltaMes <= 0) {
         return 0;
     }
     
+    // Calcula dias úteis restantes DINAMICAMENTE (baseado no mês e dia atual)
     const diasRestantes = getDiasUteisRestantes();
+    
+    // Log para debug (pode remover depois)
+    const hoje = new Date();
+    const mesAtual = hoje.getMonth() + 1; // +1 porque getMonth() retorna 0-11
+    const anoAtual = hoje.getFullYear();
+    console.log(`📅 Cálculo dinâmico - Mês: ${mesAtual}/${anoAtual}, Dias úteis restantes: ${diasRestantes}, Falta: ${formatCurrency(faltaMes)}`);
     
     // Se não há dias restantes, retorna o que falta
     if (diasRestantes === 0) {
         return faltaMes;
     }
     
-    // Meta do dia = (Meta mensal - Faturado) / Dias úteis restantes
-    return faltaMes / diasRestantes;
+    // Meta do dia = (Meta mensal - Faturado até ontem) / Dias úteis restantes
+    const metaDoDia = faltaMes / diasRestantes;
+    console.log(`🎯 Meta do dia calculada: ${formatCurrency(metaDoDia)} (${formatCurrency(faltaMes)} / ${diasRestantes} dias)`);
+    
+    return metaDoDia;
 }
 
 // Calcula tempo restante até fim do dia (meia-noite)
@@ -107,31 +199,40 @@ async function atualizarDados() {
     const isRandomMode = urlParams.has('aleatorio');
     
     try {
-        // Usa cache se estiver no modo aleatório
-        const useCacheParam = isRandomMode ? '?use_cache=true' : '';
+        // Carrega a meta manual primeiro (se configurada)
+        await loadManualGoal();
         
-        // Busca faturamento até ontem (para calcular meta do dia), do dia atual E pipeline previsto para hoje em paralelo
-        const [responseUntilYesterday, responseToday, responsePipeline] = await Promise.all([
-            fetch(`/api/revenue/until-yesterday${useCacheParam}`),
-            fetch(`/api/revenue/today${useCacheParam}`),
-            fetch(`/api/pipeline/today${useCacheParam}`)
+        // Usa cache se estiver no modo aleatório
+        const useCacheParam = isRandomMode ? '&use_cache=true' : '';
+        
+        // Busca faturamento do mês atual (para calcular meta do dia), do dia atual E pipeline previsto para hoje em paralelo
+        // Usa month=current para garantir que está olhando para o mês atual
+        const [responseCurrentMonth, responseToday, responsePipeline] = await Promise.all([
+            fetch(`/api/revenue?month=current${useCacheParam}`),
+            fetch(`/api/revenue/today${useCacheParam.replace('&', '?')}`),
+            fetch(`/api/pipeline/today${useCacheParam.replace('&', '?')}`)
         ]);
         
-        const dataUntilYesterday = await responseUntilYesterday.json();
+        const dataCurrentMonth = await responseCurrentMonth.json();
         const dataToday = await responseToday.json();
         const dataPipeline = await responsePipeline.json();
         
         // O valor adicional já é aplicado pelo backend se o modo manual estiver ativo
-        const faturadoAteOntem = dataUntilYesterday.total || 0;
+        // dataCurrentMonth.total = faturamento total do mês atual
+        const faturadoMes = dataCurrentMonth.total || 0;
         const faturadoHoje = dataToday.total_today || 0;
-        const faturadoMes = faturadoAteOntem + faturadoHoje; // Total do mês (até ontem + hoje)
+        // Faturado até ontem = Total do mês - Faturado hoje
+        const faturadoAteOntem = Math.max(0, faturadoMes - faturadoHoje);
         const pipelineHoje = dataPipeline.total_pipeline || 0;
         const totalDealsPrevistos = dataPipeline.total_deals || 0;
         
-        // Calcula meta do dia baseado no faturado até ontem (não inclui o faturado de hoje)
-        // Isso garante que a meta do dia não diminua conforme entram ganhos no dia
-        const metaDoDia = calcularMetaDoDia(faturadoAteOntem);
-        const faltaMes = Math.max(0, META_MENSAL - faturadoMes);
+        // Usa a meta mensal atual (pode ser a manual ou a padrão)
+        const metaMensalAtual = META_MENSAL;
+        
+        // Calcula meta do dia baseado no que falta dividido pelos dias úteis restantes
+        // Meta do dia = (Meta mensal - Faturado até ontem) / Dias úteis restantes
+        const metaDoDia = calcularMetaDoDia(faturadoAteOntem, metaMensalAtual);
+        const faltaMes = Math.max(0, metaMensalAtual - faturadoMes);
         const diasRestantes = getDiasUteisRestantes();
         
         // Atualiza meta do dia
@@ -148,17 +249,7 @@ async function atualizarDados() {
         progressBar.style.width = `${progressoLimitado}%`;
         progressPercentage.textContent = `${progressoLimitado.toFixed(1)}%`;
         
-        // Cores dinâmicas
-        progressBar.classList.remove('critical', 'attention', 'close', 'complete');
-        if (progressoLimitado >= 100) {
-            progressBar.classList.add('complete');
-        } else if (progressoLimitado >= 70) {
-            progressBar.classList.add('close');
-        } else if (progressoLimitado >= 30) {
-            progressBar.classList.add('attention');
-        } else {
-            progressBar.classList.add('critical');
-        }
+        // Barra mantém cor laranja sólida sempre (sem mudança de cor)
         
         // Atualiza valores (faturado HOJE)
         document.getElementById('valorAtual').textContent = formatCurrency(faturadoHoje);
@@ -215,6 +306,7 @@ async function atualizarDados() {
         
         // Estatísticas do mês
         document.getElementById('faturadoMes').textContent = formatCurrency(faturadoMes);
+        document.getElementById('metaMes').textContent = formatCurrency(metaMensalAtual);
         document.getElementById('faltaMes').textContent = formatCurrency(faltaMes);
         document.getElementById('diasUteis').textContent = `${diasRestantes} ${diasRestantes === 1 ? 'dia' : 'dias'}`;
         

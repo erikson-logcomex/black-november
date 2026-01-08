@@ -11,6 +11,10 @@ const CELEBRATION_THEMES = {
     'natal': {
         name: 'Natal',
         description: 'Tema natalino verde e dourado'
+    },
+    'padrao': {
+        name: 'Padrão',
+        description: 'Tema padrão Logcomex - roxo e laranja'
     }
 };
 

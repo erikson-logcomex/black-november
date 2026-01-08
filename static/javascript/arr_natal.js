@@ -56,10 +56,14 @@ async function loadARRData() {
  * Atualiza o gauge semicircular e as métricas
  */
 function updateGauge(data) {
+    const arrValue = data.arr_value || 0;
+    const arrTarget = data.arr_target || 276103;
     const percentage = data.percentage || 0;
-    // Para um semicírculo, o comprimento é π * raio (raio = 500 no SVG atualizado)
+    
+    // Para o gauge, limita a 100% visualmente (gauge completo)
+    const gaugePercentage = Math.min(percentage, 100);
     const semicircleLength = Math.PI * 500; // ≈ 1570.8
-    const offset = semicircleLength - (percentage / 100) * semicircleLength;
+    const offset = semicircleLength - (gaugePercentage / 100) * semicircleLength;
     
     const progressPath = document.getElementById('gaugeProgress');
     if (progressPath) {
@@ -67,27 +71,41 @@ function updateGauge(data) {
     }
     
     // Atualiza valores no container de métricas
-    const arrValue = document.getElementById('arrValue');
-    if (arrValue) {
-        arrValue.textContent = formatCurrency(data.arr_value || 0);
+    const arrValueEl = document.getElementById('arrValue');
+    if (arrValueEl) {
+        arrValueEl.textContent = formatCurrency(arrValue);
     }
     
-    const arrTarget = document.getElementById('arrTarget');
-    if (arrTarget) {
-        arrTarget.textContent = formatCurrency(data.arr_target || 225000000);
+    const arrTargetEl = document.getElementById('arrTarget');
+    if (arrTargetEl) {
+        arrTargetEl.textContent = formatCurrency(arrTarget);
     }
     
-    const arrPercentage = document.getElementById('arrPercentage');
-    if (arrPercentage) {
-        arrPercentage.textContent = `${percentage.toFixed(1)}%`;
+    // Log para debug
+    console.log('ARR Debug:', {
+        arrValue: arrValue,
+        arrTarget: arrTarget,
+        percentage: percentage,
+        remaining: data.remaining
+    });
+    
+    const arrPercentageEl = document.getElementById('arrPercentage');
+    if (arrPercentageEl) {
+        // Mostra porcentagem real (pode ser > 100%)
+        arrPercentageEl.textContent = `${percentage.toFixed(1)}%`;
     }
     
-    const arrRemaining = document.getElementById('arrRemaining');
-    if (arrRemaining) {
-        if (data.remaining && data.remaining > 0) {
-            arrRemaining.textContent = formatCurrency(data.remaining);
+    const arrRemainingEl = document.getElementById('arrRemaining');
+    if (arrRemainingEl) {
+        // Verifica se a meta foi alcançada
+        if (arrValue >= arrTarget) {
+            arrRemainingEl.textContent = 'Meta alcançada! 🎉';
+        } else if (data.remaining !== null && data.remaining !== undefined && data.remaining > 0) {
+            arrRemainingEl.textContent = formatCurrency(data.remaining);
         } else {
-            arrRemaining.textContent = 'Meta alcançada! 🎉';
+            // Fallback: calcula remaining se não vier do backend
+            const remaining = arrTarget - arrValue;
+            arrRemainingEl.textContent = formatCurrency(remaining);
         }
     }
 }

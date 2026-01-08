@@ -18,7 +18,7 @@ LOOKER_USERNAME = os.getenv('LOOKER_USERNAME', '')
 LOOKER_PASSWORD = os.getenv('LOOKER_PASSWORD', '')
 
 # Meta fixa de ARR
-ARR_TARGET = 225000000  # R$225,000,000
+ARR_TARGET = 276103000  # R$276.103.000
 
 # Cache em memória para os dados de ARR
 _arr_cache = {
@@ -305,11 +305,26 @@ def get_arr_value(force_refresh=False):
                 if unique_values:
                     arr_value = max(unique_values)
             
+            # Calcula remaining e percentage corretamente
+            remaining = None
+            percentage = 0
+            
+            if arr_value and ARR_TARGET > 0:
+                if arr_value >= ARR_TARGET:
+                    # Meta alcançada - remaining é 0
+                    remaining = 0
+                    # Mostra porcentagem real (pode ser > 100%)
+                    percentage = round((arr_value / ARR_TARGET * 100), 2)
+                else:
+                    # Meta não alcançada - calcula quanto falta
+                    remaining = ARR_TARGET - arr_value
+                    percentage = round((arr_value / ARR_TARGET * 100), 2)
+            
             result = {
                 'arr_value': arr_value,
                 'arr_target': ARR_TARGET,
-                'remaining': max(0, ARR_TARGET - arr_value) if arr_value else None,
-                'percentage': round((arr_value / ARR_TARGET * 100) if arr_value and ARR_TARGET > 0 else 0, 2),
+                'remaining': remaining,
+                'percentage': percentage,
                 'timestamp': time.strftime('%Y-%m-%d %H:%M:%S')
             }
             

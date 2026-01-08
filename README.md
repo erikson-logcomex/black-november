@@ -5,14 +5,19 @@ Sistema completo de gamificação e visualização de vendas em tempo real para 
 ## 🌟 Visão Geral
 
 Sistema composto por:
-- **Painel 1 - Dashboard Principal** (`/`): Funil animado com rankings rotativos (4 slides: EVs, SDRs NEW, SDRs Expansão, LDRs)
-- **Painel 2 - Metas & Progresso** (`/metas`): Meta do dia, pipeline previsto, contagem regressiva e status inteligente
+- **Sistema de Temas**: Suporte a múltiplos temas (Padrão, Natal, Black November) com rotas dinâmicas
+- **Painel 1 - Dashboard Principal**: Funil animado com rankings rotativos (4 slides: EVs, SDRs NEW, SDRs Expansão, LDRs)
+- **Painel 2 - Metas & Progresso**: Meta do dia, pipeline previsto, contagem regressiva e status inteligente
+- **Painel 3 - Hall da Fama**: Rankings com badges e conquistas (EVs, SDRs, LDRs)
+- **Painel 4 - Destaques**: Pódios da semana e do mês
+- **Painel 5 - ARR**: Acompanhamento de Annual Recurring Revenue com meta configurável
 - **Painel de Rotação** (`/aleatorio`): Alterna automaticamente entre painéis a cada 1 minuto
 - **Webhooks HubSpot**: Integração em tempo real com o CRM
 - **Notificações WhatsApp**: Imagens de celebração + mensagens via Evolution API
 - **Sistema de Celebração**: Animações visuais e sonoras quando deals são fechados
 - **Banco de Dados**: Persistência de notificações e histórico (PostgreSQL Cloud SQL)
 - **PWA**: Progressive Web App com notificações push
+- **Configurações Avançadas**: Meta manual, pipeline de renovação, tema de celebração
 
 ## 📋 Requisitos
 
@@ -110,32 +115,49 @@ gcloud builds submit --config cloudbuild.yaml .
 
 ### Estrutura de Rotas Temáticas
 
-O sistema suporta múltiplos temas (Natal e Black November) com rotas separadas:
+O sistema suporta múltiplos temas com rotas dinâmicas baseadas em configuração JSON:
 
-**Rotas de Natal:**
-- `/natal` - Dashboard principal (Natal)
-- `/natal/metas` - Painel de metas (Natal)
-- `/natal/hall-da-fama` - Hall da Fama (Natal)
-- `/natal/destaques` - Destaques (Natal)
-- `/natal/logos-supply` - Logos Supply (Natal)
-- `/natal/arr` - ARR (Natal)
+**Sistema de Navegação:**
+- `/` - Página inicial com seleção de temas
+- `/temas/<theme_name>/panels` - Lista de painéis disponíveis para um tema
+- `/temas/<theme_name>/<panel_name>` - Painel específico de um tema
 
-**Rotas Black November:**
-- `/black-november` - Dashboard principal (Black November)
-- `/black-november/metas` - Painel de metas (Black November)
-- `/black-november/hall-da-fama` - Hall da Fama (Black November)
-- `/black-november/destaques` - Destaques (Black November)
+**Temas Disponíveis:**
 
-**Rotas Legadas (Redirecionam para Natal):**
-- `/` - Redireciona para seleção de painéis
-- `/metas` - Redireciona para `/natal/metas`
-- `/hall-da-fama` - Redireciona para `/natal/hall-da-fama`
-- `/destaques` - Redireciona para `/natal/destaques`
+1. **Padrão** (`/temas/padrao/`)
+   - Dashboard Principal (`funnel`)
+   - Metas & Progresso (`metas`)
+   - Destaques (`destaques`)
+   - ARR - Meta 2026 (`arr`)
+
+2. **Natal** (`/temas/natal/`)
+   - Dashboard Principal (`funnel`)
+   - Metas & Progresso (`metas`)
+   - Hall da Fama (`hall-da-fama`)
+   - Destaques (`destaques`)
+   - Logos Supply (`logos-supply`)
+   - ARR - Meta 2025 (`arr`)
+
+3. **Black November** (`/temas/black-november/`)
+   - Dashboard Principal (`funnel`)
+   - Metas & Progresso (`metas`)
+   - Hall da Fama (`hall-da-fama`)
+   - Destaques (`destaques`)
+
+**Rotas Legadas (Redirecionam para temas):**
+- `/natal/*` - Redireciona para `/temas/natal/*`
+- `/black-november/*` - Redireciona para `/temas/black-november/*`
+- `/metas` - Redireciona para `/temas/natal/metas`
+- `/hall-da-fama` - Redireciona para `/temas/natal/hall-da-fama`
+- `/destaques` - Redireciona para `/temas/natal/destaques`
 
 **Outras Rotas:**
 - `/aleatorio` - Rotação automática entre painéis
 - `/demo` - Página de demonstração com controles
 - `/webhook-debug` - Interface de debug de webhooks
+
+**Configuração de Temas:**
+Os temas são configurados em `data/themes_config.json`, permitindo adicionar novos temas ou modificar existentes sem alterar código.
 
 ### Painel 1 - Dashboard Principal (`/natal` ou `/black-november`)
 
@@ -356,13 +378,27 @@ Armazena todas as notificações com controle de visualização por client_id (s
 - Timezone: América/São Paulo (GMT-3)
 - Resposta: `{total_deals: 11, total_pipeline: 41100.66, avg_deal_value: 3736.42, date: "2025-11-12"}`
 
-**GET** `/api/revenue/manual-revenue/config`
-- Retorna configuração de receita manual (GET)
-- Permite atualizar configuração (POST)
+**GET/POST** `/api/revenue/manual-revenue/config`
+- Retorna/configura receita manual (GET/POST)
+- Permite adicionar valor adicional ao faturamento
+- Permite incluir/excluir pipeline de renovação (7075777)
+- Resposta: `{enabled: true, additionalValue: 0, includeRenewalPipeline: false}`
+
+**GET/POST** `/api/revenue/manual-goal/config`
+- Retorna/configura meta manual (GET/POST)
+- Permite definir meta fixa independente da API
+- Resposta: `{enabled: true, goalValue: 1500000}`
 
 **GET/POST** `/api/revenue/celebration-theme/config`
-- Retorna/configura tema de celebração (natal/black-november)
-- Resposta: `{theme: "natal"}` ou `{theme: "black-november"}`
+- Retorna/configura tema de celebração (natal/black-november/padrao)
+- Resposta: `{theme: "padrao"}` ou `{theme: "natal"}` ou `{theme: "black-november"}`
+
+**GET** `/api/themes/config`
+- Retorna configuração de todos os temas disponíveis
+- Resposta: JSON com estrutura de temas e painéis
+
+**GET** `/api/themes/<theme_name>`
+- Retorna configuração de um tema específico
 
 ### Rankings
 
@@ -460,6 +496,8 @@ Armazena todas as notificações com controle de visualização por client_id (s
 
 **GET** `/api/arr`
 - Retorna dados de ARR (Annual Recurring Revenue)
+- Meta configurável: R$ 276.103.000 (276 milhões)
+- Resposta: `{arr_value: 220933712, arr_target: 276103000, percentage: 80.02, remaining: 55169288}`
 
 **GET** `/api/looker/gauge-value`
 - Retorna valor do gauge do Looker Dashboard
@@ -591,19 +629,32 @@ As fotos devem estar em `static/img/team/` no formato:
 
 ## 🎯 Configuração de Metas
 
-**Meta da Black November:** R$ 1.500.000
+### Meta Manual
 
-Para alterar, edite as constantes no código:
+O sistema suporta configuração de meta manual através da interface de configurações:
 
-**JavaScript** (`static/javascript/funnel.js`):
-```javascript
-const TARGET_VALUE = 1500000;
-```
+1. Acesse qualquer painel do Dashboard Principal
+2. Clique no ícone de engrenagem (⚙️) no canto superior direito
+3. Ative "Usar Meta Manual"
+4. Defina o valor da meta desejada
 
-**HTML** (`templates/funnel.html`):
-```html
-<div class="funnel-main-value">R$ 1.500.000</div>
-```
+A meta manual é salva em `data/manual_goal_config.json` e aplicada a todas as páginas do painel.
+
+**Meta Padrão:** R$ 1.500.000
+
+**Meta ARR:** R$ 276.103.000 (276 milhões)
+
+### Pipeline de Renovação
+
+O sistema permite incluir/excluir o pipeline de Renovação (7075777) do faturamento:
+
+1. Acesse as configurações (ícone de engrenagem)
+2. Ative/desative "Pipeline Renovação"
+3. Quando ativado, o valor do pipeline de renovação é buscado diretamente do HubSpot API e adicionado ao faturamento base
+
+**Comportamento:**
+- **Desativado**: Faturamento base exclui automaticamente deals do pipeline 7075777
+- **Ativado**: Faturamento base exclui renovação + adiciona valor do HubSpot separadamente (evita duplicação)
 
 ## 🐛 Troubleshooting
 
@@ -746,7 +797,29 @@ Próximos passos sugeridos:
 
 **Responsável:** Time de RevOps Logcomex  
 **Período:** Black November 2025 (01/11 - 30/11)  
-**Última atualização:** 12/11/2025
+**Última atualização:** 08/01/2026
+
+## 🆕 Melhorias Recentes (Janeiro 2026)
+
+### Sistema de Temas Dinâmico
+- ✅ Implementado sistema de temas baseado em JSON (`data/themes_config.json`)
+- ✅ Rotas dinâmicas `/temas/<theme_name>/<panel_name>`
+- ✅ Tema Padrão adicionado com painéis essenciais
+- ✅ Navegação unificada entre temas
+
+### Configurações Avançadas
+- ✅ Meta manual configurável via interface
+- ✅ Pipeline de Renovação configurável (incluir/excluir)
+- ✅ Tema de celebração configurável (Padrão, Natal, Black November)
+- ✅ Valor adicional de faturamento configurável
+
+### Correções e Melhorias
+- ✅ Cálculo de faturamento corrigido para respeitar configuração de renovação
+- ✅ Meta ARR corrigida para R$ 276.103.000
+- ✅ Lógica de cálculo de porcentagem ARR corrigida
+- ✅ Cálculo dinâmico de dias úteis (considera feriados)
+- ✅ Remoção de transparência em textos conforme solicitado
+- ✅ Integração Font Awesome para ícones profissionais
 
 ---
 

@@ -1,0 +1,130 @@
+{
+  "themes": {
+    "padrao": {
+      "name": "Padrão Logcomex",
+      "icon": "📊",
+      "description": "Painel padrão sem temas específicos. Design limpo e profissional para uso geral.",
+      "status": "ativo",
+      "badge_color": "#6613D0",
+      "panels": {
+        "funnel": {
+          "name": "Dashboard Principal",
+          "icon": "📊",
+          "description": "Funil animado com rankings rotativos e progresso da campanha",
+          "route": "/temas/padrao/funnel",
+          "template": "funnel_padrao.html"
+        },
+        "metas": {
+          "name": "Metas & Progresso",
+          "icon": "🎯",
+          "description": "Meta do dia, pipeline previsto, contagem regressiva e status inteligente",
+          "route": "/temas/padrao/metas",
+          "template": "metas_padrao.html"
+        },
+        "destaques": {
+          "name": "Destaques",
+          "icon": "⭐",
+          "description": "Pódios da semana e do mês. Reconhecimento de médio prazo",
+          "route": "/temas/padrao/destaques",
+          "template": "destaques_padrao.html"
+        },
+        "arr": {
+          "name": "ARR - Meta 2026",
+          "icon": "💰",
+          "description": "Acompanhe o progresso do ARR (Annual Recurring Revenue) em direção à meta de R$ 225 milhões",
+          "route": "/temas/padrao/arr",
+          "template": "arr_padrao.html"
+        }
+      }
+    },
+    "natal": {
+      "name": "Natal Logcomex",
+      "icon": "🎄",
+      "description": "Painel de vendas com tema natalino. Acompanhe metas, destaques e rankings da campanha de Natal.",
+      "status": "ativo",
+      "badge_color": "#6613D0",
+      "panels": {
+        "funnel": {
+          "name": "Dashboard Principal",
+          "icon": "📊",
+          "description": "Funil animado com rankings rotativos e progresso da campanha",
+          "route": "/temas/natal/funnel",
+          "template": "funnel_natal.html"
+        },
+        "metas": {
+          "name": "Metas & Progresso",
+          "icon": "🎯",
+          "description": "Meta do dia, pipeline previsto, contagem regressiva e status inteligente",
+          "route": "/temas/natal/metas",
+          "template": "metas_natal.html"
+        },
+        "hall-da-fama": {
+          "name": "Hall da Fama",
+          "icon": "🏆",
+          "description": "Rankings com badges e conquistas. MVP do dia e top 5 de cada categoria",
+          "route": "/temas/natal/hall-da-fama",
+          "template": "hall_da_fama_natal.html"
+        },
+        "destaques": {
+          "name": "Destaques",
+          "icon": "⭐",
+          "description": "Pódios da semana e do mês. Reconhecimento de médio prazo",
+          "route": "/temas/natal/destaques",
+          "template": "destaques_natal.html"
+        },
+        "logos-supply": {
+          "name": "Logos Supply",
+          "icon": "📊",
+          "description": "Acompanhe o progresso de logos da BU Supply. Visualize New e Expansão por produto",
+          "route": "/temas/natal/logos-supply",
+          "template": "supply_logos_natal.html"
+        },
+        "arr": {
+          "name": "ARR - Meta 2025",
+          "icon": "💰",
+          "description": "Acompanhe o progresso do ARR (Annual Recurring Revenue) em direção à meta de R$ 225 milhões",
+          "route": "/temas/natal/arr",
+          "template": "arr_natal.html"
+        }
+      }
+    },
+    "black-november": {
+      "name": "Black November",
+      "icon": "🛍️",
+      "description": "Painel histórico da campanha Black November 2025. Visualize dados e recordes da campanha.",
+      "status": "historico",
+      "badge_color": "#FE8F1C",
+      "panels": {
+        "funnel": {
+          "name": "Dashboard Principal",
+          "icon": "📊",
+          "description": "Funil animado com rankings rotativos e progresso da campanha",
+          "route": "/temas/black-november/funnel",
+          "template": "funnel_black_november.html"
+        },
+        "metas": {
+          "name": "Metas & Progresso",
+          "icon": "🎯",
+          "description": "Meta do dia, pipeline previsto, contagem regressiva e status inteligente",
+          "route": "/temas/black-november/metas",
+          "template": "metas_black_november.html"
+        },
+        "hall-da-fama": {
+          "name": "Hall da Fama",
+          "icon": "🏆",
+          "description": "Rankings com badges e conquistas. MVP do dia e top 5 de cada categoria",
+          "route": "/temas/black-november/hall-da-fama",
+          "template": "hall_da_fama_black_november.html"
+        },
+        "destaques": {
+          "name": "Destaques",
+          "icon": "⭐",
+          "description": "Pódios da semana e do mês. Reconhecimento de médio prazo",
+          "route": "/temas/black-november/destaques",
+          "template": "destaques_black_november.html"
+        }
+      }
+    }
+  },
+  "default_theme": "padrao"
+}

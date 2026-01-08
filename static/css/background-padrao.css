@@ -1,0 +1,10 @@
+/* Background padrão com imagem para todas as páginas do tema padrão */
+body {
+    background-image: url('/static/img/background_v3.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* Fallback caso a imagem não carregue */
+    background-color: #4a0d7a;
+}

@@ -64,14 +64,14 @@
             animation: fadeIn 1s ease-out 0.4s both;
         }
         
-        .panels-grid {
+        .themes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
         
-        .panel-card {
+        .theme-card {
             background: rgba(254, 143, 28, 0.15);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(254, 143, 28, 0.5);
@@ -86,7 +86,7 @@
             animation: fadeInUp 0.8s ease-out both;
         }
         
-        .panel-card::before {
+        .theme-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -97,45 +97,46 @@
             transition: left 0.5s;
         }
         
-        .panel-card:hover::before {
+        .theme-card:hover::before {
             left: 100%;
         }
         
-        .panel-card:nth-child(1) {
+        .theme-card:nth-child(1) {
             animation-delay: 0.1s;
         }
         
-        .panel-card:nth-child(2) {
+        .theme-card:nth-child(2) {
             animation-delay: 0.2s;
         }
         
-        .panel-card:hover {
+        .theme-card:hover {
             transform: translateY(-10px);
             border-color: #FE8F1C;
             box-shadow: 0 10px 30px rgba(254, 143, 28, 0.5);
             background: rgba(254, 143, 28, 0.2);
         }
         
-        .panel-icon {
+        .theme-icon {
             font-size: 4rem;
             margin-bottom: 20px;
             display: block;
         }
         
-        .panel-title {
+        .theme-title {
             color: #fff;
             font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 15px;
         }
         
-        .panel-description {
+        .theme-description {
             color: #b8b8b8;
             font-size: 1rem;
             line-height: 1.6;
+            margin-bottom: 15px;
         }
         
-        .panel-badge {
+        .theme-badge {
             display: inline-block;
             background: #6613D0;
             color: #fff;
@@ -146,22 +147,14 @@
             font-weight: 600;
         }
         
-        .panel-card.natal {
-            border-color: rgba(254, 143, 28, 0.6);
+        .theme-badge.historico {
+            background: #FE8F1C;
         }
         
-        .panel-card.natal:hover {
-            border-color: #FE8F1C;
-            box-shadow: 0 10px 30px rgba(254, 143, 28, 0.6);
-        }
-        
-        .panel-card.black-november {
-            border-color: rgba(254, 143, 28, 0.6);
-        }
-        
-        .panel-card.black-november:hover {
-            border-color: #FE8F1C;
-            box-shadow: 0 10px 30px rgba(254, 143, 28, 0.6);
+        .theme-panel-count {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 10px;
         }
         
         @keyframes fadeIn {
@@ -204,12 +197,12 @@
                 max-width: 350px;
             }
             
-            .panels-grid {
+            .themes-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
             
-            .panel-card {
+            .theme-card {
                 padding: 30px 20px;
             }
         }
@@ -222,46 +215,69 @@
         </div>
         
         <h1>Painéis de Vendas</h1>
-        <p class="subtitle">Escolha o painel que deseja visualizar</p>
+        <p class="subtitle">Escolha o tema da campanha</p>
         
-        <div class="panels-grid">
-            <a href="/natal" class="panel-card natal">
-                <span class="panel-icon">🎄</span>
-                <div class="panel-title">Natal Logcomex</div>
-                <div class="panel-description">
-                    Painel de vendas com tema natalino. Acompanhe metas, destaques e rankings da campanha de Natal.
-                </div>
-                <span class="panel-badge">Ativo</span>
-            </a>
-            
-            <a href="/black-november" class="panel-card black-november">
-                <span class="panel-icon">🛍️</span>
-                <div class="panel-title">Black November</div>
-                <div class="panel-description">
-                    Painel histórico da campanha Black November 2025. Visualize dados e recordes da campanha.
-                </div>
-                <span class="panel-badge" style="background: #FE8F1C;">Histórico</span>
-            </a>
-            
-            <a href="/natal/logos-supply" class="panel-card natal">
-                <span class="panel-icon">📊</span>
-                <div class="panel-title">Logos Supply</div>
-                <div class="panel-description">
-                    Acompanhe o progresso de logos da BU Supply. Visualize New e Expansão por produto.
-                </div>
-                <span class="panel-badge">Ativo</span>
-            </a>
-            
-            <a href="/natal/arr" class="panel-card natal">
-                <span class="panel-icon">💰</span>
-                <div class="panel-title">ARR - Meta 2025</div>
-                <div class="panel-description">
-                    Acompanhe o progresso do ARR (Annual Recurring Revenue) em direção à meta de R$ 225 milhões.
-                </div>
-                <span class="panel-badge">Ativo</span>
-            </a>
+        <div class="themes-grid" id="themesGrid">
+            <!-- Os temas serão carregados dinamicamente via JavaScript -->
+            <div style="color: #fff; padding: 20px;">Carregando temas...</div>
         </div>
     </div>
+
+    <script>
+        // Carrega configuração de temas do servidor
+        async function loadThemes() {
+            try {
+                const response = await fetch('/api/themes/config');
+                const data = await response.json();
+                
+                if (data.error) {
+                    console.error('Erro ao carregar temas:', data.error);
+                    document.getElementById('themesGrid').innerHTML = 
+                        '<div style="color: #fff; padding: 20px;">Erro ao carregar temas. Recarregue a página.</div>';
+                    return;
+                }
+                
+                const themes = data.themes || {};
+                const themesGrid = document.getElementById('themesGrid');
+                themesGrid.innerHTML = '';
+                
+                // Ordena temas: ativos primeiro, depois históricos
+                const themesArray = Object.entries(themes).sort((a, b) => {
+                    const statusA = a[1].status === 'ativo' ? 0 : 1;
+                    const statusB = b[1].status === 'ativo' ? 0 : 1;
+                    return statusA - statusB;
+                });
+                
+                themesArray.forEach(([themeId, theme], index) => {
+                    const panelCount = Object.keys(theme.panels || {}).length;
+                    const badgeClass = theme.status === 'historico' ? 'historico' : '';
+                    const badgeText = theme.status === 'ativo' ? 'Ativo' : 'Histórico';
+                    
+                    const card = document.createElement('a');
+                    card.href = `/temas/${themeId}/painéis`;
+                    card.className = 'theme-card';
+                    card.style.animationDelay = `${0.1 * (index + 1)}s`;
+                    
+                    card.innerHTML = `
+                        <span class="theme-icon">${theme.icon || '📊'}</span>
+                        <div class="theme-title">${theme.name}</div>
+                        <div class="theme-description">${theme.description || ''}</div>
+                        <div class="theme-panel-count">${panelCount} painel${panelCount !== 1 ? 'is' : ''} disponível${panelCount !== 1 ? 'eis' : ''}</div>
+                        <span class="theme-badge ${badgeClass}">${badgeText}</span>
+                    `;
+                    
+                    themesGrid.appendChild(card);
+                });
+                
+            } catch (error) {
+                console.error('Erro ao carregar temas:', error);
+                document.getElementById('themesGrid').innerHTML = 
+                    '<div style="color: #fff; padding: 20px;">Erro ao carregar temas. Recarregue a página.</div>';
+            }
+        }
+        
+        // Carrega temas ao carregar a página
+        loadThemes();
+    </script>
 </body>
 </html>
-

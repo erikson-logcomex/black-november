@@ -1,0 +1,185 @@
+/* Botões Padrão - Estilo Unificado de Badge Branco */
+
+/* Botão Home */
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10000;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #6613D0;
+    box-shadow: 
+        0 4px 15px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.home-button i {
+    font-size: 20px;
+    display: block;
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 6px 20px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.home-button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+        0 3px 10px rgba(255, 255, 255, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Botão de Configurações */
+.settings-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 102;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #6613D0;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 15px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.settings-btn i {
+    font-size: 20px;
+    display: block;
+}
+
+.settings-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 
+        0 6px 20px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.settings-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+        0 3px 10px rgba(255, 255, 255, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Botões de Teste */
+.test-milestone-btn,
+.test-deal-celebration-btn {
+    position: fixed;
+    right: 20px;
+    z-index: 102;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    color: #6613D0;
+    box-shadow: 
+        0 4px 15px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.test-milestone-btn i,
+.test-deal-celebration-btn i {
+    font-size: 20px;
+    display: block;
+}
+
+.test-milestone-btn {
+    top: 80px;
+}
+
+.test-deal-celebration-btn {
+    top: 140px;
+}
+
+.test-milestone-btn:hover,
+.test-deal-celebration-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 
+        0 6px 20px rgba(255, 255, 255, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.test-milestone-btn:active,
+.test-deal-celebration-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+        0 3px 10px rgba(255, 255, 255, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .home-button,
+    .settings-btn,
+    .test-milestone-btn,
+    .test-deal-celebration-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .home-button i,
+    .settings-btn i,
+    .test-milestone-btn i,
+    .test-deal-celebration-btn i {
+        font-size: 18px;
+    }
+    
+    .home-button {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .settings-btn {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .test-milestone-btn {
+        top: 70px;
+        right: 15px;
+    }
+    
+    .test-deal-celebration-btn {
+        top: 125px;
+        right: 15px;
+    }
+}

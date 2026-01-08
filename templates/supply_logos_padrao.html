@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Logos Supply - Logcomex</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6613D0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Logos Supply">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="/static/img/icon-192.png">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Chart.js Plugin Datalabels -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    
+    <link rel="stylesheet" href="/static/css/funnel.css">
+    <link rel="stylesheet" href="/static/css/background-padrao.css">
+    <link rel="stylesheet" href="/static/css/buttons-padrao.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration.css">
+    <link rel="stylesheet" href="/static/css/deal_celebration_themes.css">
+    <link rel="stylesheet" href="/static/css/supply-logos-natal.css">
+</head>
+<body>
+    <a href="/" class="home-button" title="Voltar para página inicial">
+        <i class="fas fa-home"></i>
+    </a>
+    <img src="/static/img/confidencial.png" alt="Confidencial" class="confidencial-logo">
+    
+    <!-- Título Principal -->
+    <div class="supply-logos-title">Logos Supply - Meta 2025</div>
+    
+    <!-- Gauge Principal -->
+    <div class="gauge-container" id="gaugeContainer" style="display: none;">
+        <div class="gauge-wrapper">
+            <div class="gauge-circle" id="gaugeCircle">
+                <svg class="gauge-svg" viewBox="0 0 200 200">
+                    <circle class="gauge-background" cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="20"/>
+                    <circle class="gauge-progress" id="gaugeProgress" cx="100" cy="100" r="90" fill="none" stroke="#FFD700" stroke-width="20" 
+                            stroke-dasharray="565.48" stroke-dashoffset="565.48" transform="rotate(-90 100 100)"/>
+                </svg>
+                <div class="gauge-content">
+                    <div class="gauge-value" id="gaugeValue">-</div>
+                    <div class="gauge-label">Logos</div>
+                    <div class="gauge-target">Meta: <span id="gaugeTarget">-</span></div>
+                    <div class="gauge-percentage" id="gaugePercentage">-</div>
+                    <div class="gauge-remaining" id="gaugeRemaining">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cards de Métricas -->
+    <div class="stats-container" id="statsContainer" style="display: none;">
+        <div class="gauge-stats">
+            <div class="stat-item">
+                <div class="stat-label">New</div>
+                <div class="stat-value stat-new" id="statNew">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Expansão</div>
+                <div class="stat-value stat-expansion" id="statExpansion">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Total</div>
+                <div class="stat-value stat-total" id="statTotal">0</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gráfico de Barras Agrupadas -->
+    <div class="chart-container" id="chartContainer" style="display: none;">
+        <div class="chart-title">Logos por Produto e Pipeline</div>
+        <canvas id="logosChart"></canvas>
+    </div>
+    
+    <!-- Bruno Grinch - Vídeo com Chromakey -->
+    <video id="brunoGrinchVideo" class="bruno-grinch-video" autoplay muted playsinline style="display: none;" preload="auto">
+        <source src="/static/img/bruno_grinch.mp4" type="video/mp4">
+    </video>
+    <canvas id="brunoGrinchVideoCanvas" class="bruno-grinch-video-canvas" style="display: none;"></canvas>
+    
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Carregando dados...</div>
+    </div>
+    
+    <!-- Componente Universal de Celebração -->
+    {% include 'includes/celebration_component.html' %}
+    
+    <script src="/static/javascript/celebration_theme_manager.js"></script>
+    <script src="/static/javascript/deal_celebration.js"></script>
+    <script src="/static/javascript/bruno-grinch.js"></script>
+    <script src="/static/javascript/supply_logos_natal.js"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/sw.js').catch(() => {});
+        }
+    </script>
+</body>
+</html>
+
