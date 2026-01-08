@@ -729,14 +729,16 @@ gcloud logs read --service=black-november-funnel --limit=100
 
 ## � Estatísticas do Projeto
 
-- **Total de linhas de código:** 7.864
-  - JavaScript: 2.567 linhas (32.6%)
-  - CSS: 2.380 linhas (30.3%)
-  - Python: 1.671 linhas (21.3%)
-  - HTML: 782 linhas (9.9%)
-  - SQL: 464 linhas (5.9%)
-- **Arquivos:** 25 arquivos principais
-- **Tempo de desenvolvimento:** 12 dias (01/11 - 12/11/2025)
+- **Total de linhas de código:** ~10.000+
+  - JavaScript: ~3.500 linhas
+  - CSS: ~3.200 linhas
+  - Python: ~2.500 linhas
+  - HTML: ~1.200 linhas
+  - SQL: ~600 linhas
+- **Arquivos:** 50+ arquivos principais
+- **Temas suportados:** 3 (Padrão, Natal, Black November)
+- **Painéis disponíveis:** 5+ por tema
+- **Tempo de desenvolvimento:** Evolução contínua desde 01/11/2025
 - **Deploy:** Google Cloud Run (automático via Cloud Build)
 
 ## 🐛 Troubleshooting Avançado
