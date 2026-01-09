@@ -86,6 +86,19 @@ def get_lights_base64():
     return None
 
 
+def get_padrao_background_base64():
+    """Obtém fundo de celebração padrão em base64"""
+    background_path = os.path.join(os.path.dirname(__file__), 'static', 'img', 'fundo_celebração_padrao.png')
+    
+    if os.path.exists(background_path):
+        with open(background_path, 'rb') as f:
+            background_bytes = f.read()
+            background_base64 = base64.b64encode(background_bytes).decode('utf-8')
+            return f'data:image/png;base64,{background_base64}'
+    
+    return None
+
+
 def get_celebration_theme():
     """Obtém o tema de celebração configurado do arquivo JSON"""
     import json
@@ -142,6 +155,16 @@ def generate_celebration_image(deal_data):
             themes_css = themes_css.replace(
                 "url('/static/img/touca_natal.png')",
                 f"url('{hat_base64}')"
+            )
+    
+    # Se o tema for Padrão, substitui o caminho do fundo por base64
+    if theme == 'padrao':
+        padrao_background_base64 = get_padrao_background_base64()
+        if padrao_background_base64:
+            # Substitui o caminho da imagem pela versão base64 no CSS
+            themes_css = themes_css.replace(
+                "url('/static/img/fundo_celebração_padrao.png')",
+                f"url('{padrao_background_base64}')"
             )
     
     # Monta o HTML da celebração (estrutura IGUAL ao JavaScript)
